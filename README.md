@@ -21,10 +21,15 @@ My startup description here.
 ### Elevator pitch
 Sometimes texting is your only good option for sending a friend a nice note, short of mailing a letter. The Sincerely messaging app provides an alternative option: write them a virtual nice letter, but instead of texting or mailing it you fold it up into a paper airplane and throw it (angry-birds style) into their window!
 
-### Design
-![Write a message](design-images/write.heic)  
-![Send a message](design-images/send.heic) ![MVP version](design-images/send-mvp.heic)  
-![Inbox (view messages)](design-images/inbox.heic) ![MVP version](design-images/inbox-mvp.heic)  
+### Design  
+Main app pages are sketched below:  
+![Write a message](design-images/write.png)  
+![Send a message](design-images/send.png)  
+![Inbox (view messages)](design-images/inbox.png)  
+
+These Send Message and Inbox pages could take more work. More minimal versions might look like this:
+![MVP version](design-images/send-mvp.png)  
+![MVP version](design-images/inbox-mvp.png)
 
 ### Key features
 - Unique user accounts
