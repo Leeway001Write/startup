@@ -2,37 +2,46 @@
 
 [My Notes](notes.md)
 
-A brief description of the application here. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+My startup description here.
 
-
-> [!NOTE]
+> [!NOTE]  
 >  This is a template for your startup application. You must modify this `README.md` file for each phase of your development. You only need to fill in the section for each deliverable when that deliverable is submitted in Canvas. Without completing the section for a deliverable, the TA will not know what to look for when grading your submission. Feel free to add additional information to each deliverable description, but make sure you at least have the list of rubric items and a description of what you did for each item.
 
-> [!NOTE]
+> [!NOTE]  
 >  If you are not familiar with Markdown then you should review the [documentation](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax) before continuing.
 
 ## 🚀 Specification Deliverable
 
-> [!NOTE]
->  Fill in this sections as the submission artifact for this deliverable. You can refer to this [example](https://github.com/webprogramming260/startup-example/blob/main/README.md) for inspiration.
-
-For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
-
-- [ ] Proper use of Markdown
-- [ ] A concise and compelling elevator pitch
-- [ ] Description of key features
-- [ ] Description of how you will use each technology
+- [x] Proper use of Markdown
+- [x] A concise and compelling elevator pitch
+- [x] Description of key features
+- [x] Description of how you will use each technology
 - [ ] One or more rough sketches of your application. Images must be embedded in this file using Markdown image references.
 
 ### Elevator pitch
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+Sometimes texting is your only good option for sending a friend a nice note, short of mailing a letter. The Sincerely messaging app provides an alternative option: write them a virtual nice letter, but instead of texting or mailing it you fold it up into a paper airplane and throw it (angry-birds style) into their window!
 
 ### Design
 
-![Design image](placeholder.png)
+### Key features
+- Unique user accounts
+- Search for friends
+- Send friend requests and messages via paper airplane game
+- View inbox
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+### Technologies
+- **HTML** - 5 pages maximun: login/registration, main menu, searching for friends, throwing a message, and the user's inbox.
+- **CSS** - Minimum viable product involves an organized interface for writing, sending, and viewing messages. More CSS and Javascript work would involve having an aesthetic minigame feel and interactivity.
+- **React** - Components to divide the app into modules. Critical backbone for organization of code.
+- **Service** - Backend has endpoints for:
+    - login/registration
+    - sending messages
+    - retrieving messages
+    - etc.
+
+    API call is made to get local weather and time. This influences the backdrop art on the airplane throwing scene.
+- **Database** - User messages are stored on the server between sessions.
+- **Websocket** - New messages are sent and become visible to the receiver in real time.
 
 ```mermaid
 sequenceDiagram
@@ -40,23 +49,6 @@ sequenceDiagram
     actor Website
     You->>Website: Replace this with your design
 ```
-
-### Key features
-
-- Describe your key feature
-- Describe your key feature
-- Describe your key feature
-
-### Technologies
-
-I am going to use the required technologies in the following ways.
-
-- **HTML** - Description here
-- **CSS** - Description here
-- **React** - Description here
-- **Service** - Description here
-- **DB/Login** - Description here
-- **WebSocket** - Description here
 
 ## 🚀 AWS deliverable
 
