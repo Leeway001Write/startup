@@ -51,13 +51,6 @@ These Send Message and Inbox pages could take more work. More minimal versions m
 - **Database** - User messages are stored on the server between sessions.
 - **Websocket** - New messages are sent and become visible to the receiver in real time.
 
-```mermaid
-sequenceDiagram
-    actor You
-    actor Website
-    You->>Website: Replace this with your design
-```
-
 ## 🚀 AWS deliverable
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
