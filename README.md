@@ -16,12 +16,15 @@ My startup description here.
 - [x] A concise and compelling elevator pitch
 - [x] Description of key features
 - [x] Description of how you will use each technology
-- [ ] One or more rough sketches of your application. Images must be embedded in this file using Markdown image references.
+- [x] One or more rough sketches of your application. Images must be embedded in this file using Markdown image references.
 
 ### Elevator pitch
 Sometimes texting is your only good option for sending a friend a nice note, short of mailing a letter. The Sincerely messaging app provides an alternative option: write them a virtual nice letter, but instead of texting or mailing it you fold it up into a paper airplane and throw it (angry-birds style) into their window!
 
 ### Design
+![Write a message](design-images/write.heic)  
+![Send a message](design-images/send.heic) ![MVP version](design-images/send-mvp.heic)  
+![Inbox (view messages)](design-images/inbox.heic) ![MVP version](design-images/inbox-mvp.heic)  
 
 ### Key features
 - Unique user accounts
