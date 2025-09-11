@@ -3,13 +3,13 @@
 ## Helpful links
 
 - [Course instruction](https://github.com/webprogramming260)
-
-## GitHub Repository
-I've used git many times before, so this part was easy :)
+- [AWS Console](https://us-east-2.console.aws.amazon.com/console/home?region=us-east-1#)
+- [My Website](http://52.7.203.77)
 
 ## AWS
 
-My IP address is: 54.81.96.130
+My IP address is: `52.7.203.77`  
+Domain name: `leeway001.click` (Test domain [here](http://leeway001.click))
 
 ## Caddy
 
