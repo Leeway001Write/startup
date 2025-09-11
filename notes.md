@@ -9,11 +9,18 @@
 ## AWS
 
 My IP address is: `52.7.203.77`  
-Domain name: `leeway001.click` (Test domain [here](http://leeway001.click))
+Domain name: `leeway001.click` (Test domain [here](https://leeway001.click))
+
+### Domain records:
+I need to do some research or asking to better understand the meaning of Hosted Zone, Domain, and Domain Records.
+
+| Record Type | Purpose                                |
+|-------------|----------------------------------------|
+| A | Associate IP address with Domain name |
+| SOA | "Start of Authority" - Contact info for owner |
+| NS | "Name Server" - Notes which name server authorized you to use this name. Security. |
 
 ## Caddy
-
-- [Instruction](https://github.com/webprogramming260/.github/blob/main/profile/webServers/https/https.md)
 
 ## HTML
 
