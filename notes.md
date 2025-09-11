@@ -23,6 +23,12 @@ I need to do some research or asking to better understand the meaning of Hosted 
 ## Caddy
 
 ## HTML
+- Certain HTML elements don't behave any differently from a `div` element, they simple provide variety to semantics.
+  - header
+  - fooder
+  - section
+  - aside
+- A `nav` element does behave slightly differently.
 
 ## CSS
 
