@@ -2,13 +2,7 @@
 
 [My Notes](notes.md)
 
-My startup description here.
-
-> [!NOTE]  
->  This is a template for your startup application. You must modify this `README.md` file for each phase of your development. You only need to fill in the section for each deliverable when that deliverable is submitted in Canvas. Without completing the section for a deliverable, the TA will not know what to look for when grading your submission. Feel free to add additional information to each deliverable description, but make sure you at least have the list of rubric items and a description of what you did for each item.
-
-> [!NOTE]  
->  If you are not familiar with Markdown then you should review the [documentation](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax) before continuing.
+> *I still need to write a description.*
 
 ## 🚀 Specification Deliverable
 
@@ -53,23 +47,21 @@ These Send Message and Inbox pages could take more work. More minimal versions m
 
 ## 🚀 AWS deliverable
 
-For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
-
-- [ ] **Server deployed and accessible with custom domain name** - [My server link](https://yourdomainnamehere.click).
+- [x] **Server deployed and accessible with custom domain name** - [leeway001.click](https://leeway001.click).
 
 ## 🚀 HTML deliverable
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **HTML pages** - I did not complete this part of the deliverable.
-- [ ] **Proper HTML element usage** - I did not complete this part of the deliverable.
-- [ ] **Links** - I did not complete this part of the deliverable.
-- [ ] **Text** - I did not complete this part of the deliverable.
-- [ ] **3rd party API placeholder** - I did not complete this part of the deliverable.
-- [ ] **Images** - I did not complete this part of the deliverable.
-- [ ] **Login placeholder** - I did not complete this part of the deliverable.
-- [ ] **DB data placeholder** - I did not complete this part of the deliverable.
-- [ ] **WebSocket placeholder** - I did not complete this part of the deliverable.
+- [x] **HTML pages** - 4 pages
+- [x] **Proper HTML element usage** - Included `header`, `nav`, `body`, `main`, and `footer` tags
+- [x] **Links** - Links to each page in header nav
+- [x] **Text** - Filler text
+- [x] **3rd party API placeholder** - Weather API call will change sky color on send page
+- [x] **Images** - Included
+- [x] **Login placeholder** - On index.html
+- [x] **DB data placeholder** - On inbox (messages stored on database)
+- [x] **WebSocket placeholder** - On inbox (messages update live, `NEW` tag)
 
 ## 🚀 CSS deliverable
 
