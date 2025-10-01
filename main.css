@@ -1,0 +1,17 @@
+@import "../node_modules/bootstrap/scss/bootstrap";
+
+@import url('https://fonts.googleapis.com/css2?family=Schoolbell&display=swap');
+
+* {
+    font-family: "Schoolbell", cursive;
+    font-weight: 400;
+    font-style: normal;
+}
+
+body {
+
+}
+
+body header {
+
+}
