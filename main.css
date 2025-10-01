@@ -18,11 +18,24 @@
 
 }
 
-body {
+header {
+    margin: 0;
+    padding: 0;
+
     font-family: "Sour Gummy", sans-serif;
     font-optical-sizing: auto;
     font-weight: 1em;
     font-style: normal;
     font-variation-settings:
         "wdth" 100;
+}
+
+.nav-link:hover {
+    color: var(--bs-secondary);
+}
+
+@media (max-width: 575px) {
+    .navbar-brand {
+        display: none;
+    }
 }
