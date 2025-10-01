@@ -1,19 +1,25 @@
-@import "../node_modules/bootstrap/scss/bootstrap";
-
 /* @import url('https://fonts.googleapis.com/css2?family=Schoolbell&display=swap'); */
 @import url('https://fonts.googleapis.com/css2?family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap');
 
-* {
+:root {
+    /* Color Scheme */
+    --bs-primary: #FADCB4;
+    --bs-primary-rgb: 250, 220, 180;
+
+    --bs-secondary: #FAD0B4;
+    --bs-secondary-rgb: 250, 208, 180;
+
+    --bs-warning: #FAB7B4;
+    --bs-warning-rgb: 250, 183, 180;
+}
+
+body {
     font-family: "Sour Gummy", sans-serif;
     font-optical-sizing: auto;
     font-weight: 1em;
     font-style: normal;
     font-variation-settings:
         "wdth" 100;
-}
-
-body {
-
 }
 
 body header {
