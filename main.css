@@ -3,14 +3,19 @@
 
 :root {
     /* Color Scheme */
-    --bs-primary: #FADCB4;
-    --bs-primary-rgb: 250, 220, 180;
+    --bs-primary: #ffe9cc;
+    --bs-primary-rgb: 255, 233, 204;
 
-    --bs-secondary: #FAD0B4;
-    --bs-secondary-rgb: 250, 208, 180;
+    --bs-secondary: #faaf8a;
+    --bs-secondary-rgb: 250,175,138;
 
-    --bs-warning: #FAB7B4;
-    --bs-warning-rgb: 250, 183, 180;
+    --bs-warning: #DB4251;
+    --bs-warning-rgb: 219, 66, 81;
+
+    --bs-success: #379F94;
+--bs-success-rgb: 55, 159, 148;
+
+
 }
 
 body {
@@ -20,8 +25,4 @@ body {
     font-style: normal;
     font-variation-settings:
         "wdth" 100;
-}
-
-body header {
-
 }
