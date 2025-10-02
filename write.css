@@ -1,0 +1,13 @@
+.paper {
+    width: 25vw;
+    min-width: 300px;
+    height: calc(25vw * 1.3);
+    min-height: 60vh;
+
+    outline: none;
+    resize: none;
+    overflow: auto;
+
+    background-color: #ffe9cc;
+    border: none;
+}
