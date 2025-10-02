@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Mynerve&display=swap');
+
 .paper {
     width: 25vw;
     min-width: 300px;
@@ -8,6 +10,12 @@
     resize: none;
     overflow: auto;
 
-    background-color: #ffe9cc;
-    border: none;
+    background-color: white;
+    border-color: #ffe9cc;
+    border-style: solid;
+    border-width: 12px;
+
+    font-family: "Mynerve", cursive;
+    font-weight: 400;
+    font-style: normal;
 }
