@@ -5,6 +5,7 @@
     <title>Send - Sincerely</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="send.css">
   </head>
 
   <body class="min-vh-100 d-flex flex-column">
@@ -33,19 +34,26 @@
       </nav>
     </header>
 
-    <main class="flex-fill">
-      <p>Weather: sunny<p>
-      <p>Sky color: <b>lightblue</b></p>
-
-      <br />
-    
-      <img src="./graphics/house.jpeg" width=100 />
-      <img src="./graphics/paper-plane.png" width=36 rotate=90deg />
-      <img src="./graphics/house.jpeg" width=100 />
-
-      <br />
-
-      <button>Throw</button>
+    <main class="flex-fill m-3 d-flex flex-column justify-content-start align-items-center gap-3">
+      <div>
+        <p>Weather: sunny<p>
+        <p>Sky color: <b>lightblue</b></p>
+      </div>
+      
+      <div class="container flex-fill border p-0 overflow-hidden d-flex flex-column bg-info">
+        <div class="container-fluid d-flex flex-fill"></div>
+        <div class="container-fluid d-flex justify-content-between">
+          <img class="ratio ratio-1x1 w-25" src="./graphics/house.jpeg"/>
+          <img class="ratio ratio-1x1 w-25" src="./graphics/house.jpeg" />
+        </div>
+        <div class="bg-dark">x</div>
+        
+        <div class="airplane position-absolute">
+          <img src="./graphics/paper-plane.png" width=36 rotate=90deg />
+        </div>
+      </div>
+      
+      <button type="button" class="throw-button btn bg-secondary btn-lg text-white fw-bold">Throw</button>
     </main>
 
     <footer class="container-fluid mt-auto d-flex justify-content-between p-3 bg-dark fs-5 text-white">
