@@ -69,7 +69,7 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 - [X] **Header, footer, and main content body** - Unique per page
 - [x] **Navigation elements** - Took surprisingly long since I used Boostrap for the first time here.
-- [x] **Responsive to window resizing** - Nav bar and Inbox page needed the most responsiveness
+- [x] **Responsive to window resizing** - Nav bar and Inbox page needed the most responsiveness. `This still needs some work`, as I tested it on a normal browser window scaled to look like a mobile phone, but forgot to try the phone dimensinos emulation via developer tools, and didn't notice the responsiveness issues until after I deployed and opened the website on my phone browser."
 - [X] **Application elements** - Unique per page
 - [x] **Application text content** - Different fonts for main, header and footer.
 - [x] **Application images** - Arranging images with CSS was difficult.
