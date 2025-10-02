@@ -31,4 +31,5 @@ I need to do some research or asking to better understand the meaning of Hosted 
 - A `nav` element does behave slightly differently.
 
 ## CSS
-
+- Bootstrap is very new to me, and so far feels harder than CSS because I can't get as granular with it.
+- Bootstrap is great for easy formatting, but animations and more customized styles require CSS

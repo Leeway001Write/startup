@@ -67,12 +67,12 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Header, footer, and main content body** - I did not complete this part of the deliverable.
-- [ ] **Navigation elements** - I did not complete this part of the deliverable.
-- [ ] **Responsive to window resizing** - I did not complete this part of the deliverable.
-- [ ] **Application elements** - I did not complete this part of the deliverable.
-- [ ] **Application text content** - I did not complete this part of the deliverable.
-- [ ] **Application images** - I did not complete this part of the deliverable.
+- [ ] **Header, footer, and main content body** - WIP
+- [x] **Navigation elements** - Took surprisingly long since I used Boostrap for the first time here.
+- [x] **Responsive to window resizing** - Navigation cuts fluff as the window gets too small
+- [ ] **Application elements** - WIP
+- [x] **Application text content** - Different fonts for main, header and footer.
+- [x] **Application images** - Arranging images with CSS was difficult.
 
 ## 🚀 React part 1: Routing deliverable
 
