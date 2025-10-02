@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Mynerve&display=swap');
+
+
+.messages {
+    width: 60%;
+    height: 70vh;
+}
+
+.view-message {
+    width: 40%;
+
+    font-family: "Mynerve", cursive;
+    font-weight: 400;
+    font-style: normal;
+}
+
+@media (max-width: 800px) {
+    .window {
+        flex-direction: column-reverse;
+    }
+
+    .view-message {
+        height: 75vh;
+        width: 90vw;
+        padding: 10% 0 !important;
+    }
+
+    .messages {
+        width: 90vw;
+        height: auto;
+        overflow-y: auto;
+    }
+}
