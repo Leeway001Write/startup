@@ -44,6 +44,7 @@ export default function App() {
           <Route path="/inbox" element={<Inbox />} />
           <Route path="/write" element={<Write />} />
           <Route path="/send" element={<Send />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
 
         <footer class="container-fluid mt-auto d-flex justify-content-between p-3 bg-dark fs-5 text-white">
@@ -53,4 +54,8 @@ export default function App() {
       </div>
     </BrowserRouter>
   )
+}
+
+function NotFound() {
+  return <main className="container-fluid bg-secondary text-center">404: Return to sender. Address unknown.</main>;
 }
