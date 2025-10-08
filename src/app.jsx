@@ -13,25 +13,25 @@ import { Nav } from 'react-bootstrap';
 export default function App() {
   return (
     <BrowserRouter>
-      <div class="body min-vh-100 d-flex flex-column">
+      <div className="body min-vh-100 d-flex flex-column">
         <header>
-          <nav class="navbar bg-primary">
-            <div class="container-fluid">
-              <div class="d-flex align-items-center">
-                <a class="navbar-brand text-white fs-1 fw-bold" href="index.html">Sincerely,</a>
+          <nav className="navbar bg-primary">
+            <div className="container-fluid">
+              <div className="d-flex align-items-center">
+                <a className="navbar-brand text-white fs-1 fw-bold" href="index.html">Sincerely,</a>
 
-                <ul class="navbar-nav d-flex flex-row ms-3 fs-5">
-                  <li class="nav-item me-3">
-                    <NavLink class="nav-link" to="/">Login</NavLink>
+                <ul className="navbar-nav d-flex flex-row ms-3 fs-5">
+                  <li className="nav-item me-3">
+                    <NavLink className="nav-link" to="/">Login</NavLink>
                   </li>
-                  <li class="nav-item me-3">
-                    <NavLink class="nav-link" to="/inbox">Inbox</NavLink>
+                  <li className="nav-item me-3">
+                    <NavLink className="nav-link" to="/inbox">Inbox</NavLink>
                   </li>
-                  <li class="nav-item me-3">
-                    <NavLink class="nav-link" to="/write">Write a letter</NavLink>
+                  <li className="nav-item me-3">
+                    <NavLink className="nav-link" to="/write">Write a letter</NavLink>
                   </li>
-                  <li class="nav-item">
-                    <NavLink class="nav-link" to="/send">Send a letter</NavLink>
+                  <li className="nav-item">
+                    <NavLink className="nav-link" to="/send">Send a letter</NavLink>
                   </li>
                 </ul>
               </div>
@@ -47,9 +47,9 @@ export default function App() {
           <Route path="*" element={<NotFound />} />
         </Routes>
 
-        <footer class="container-fluid mt-auto d-flex justify-content-between p-3 bg-dark fs-5 text-white">
-          <p class="text-white mb-0">Dallin Wright</p>
-          <a class="text-secondary" href="https://github.com/Leeway001Write/startup">View GitHub Repository</a>      
+        <footer className="container-fluid mt-auto d-flex justify-content-between p-3 bg-dark fs-5 text-white">
+          <p className="text-white mb-0">Dallin Wright</p>
+          <a className="text-secondary" href="https://github.com/Leeway001Write/startup">View GitHub Repository</a>      
         </footer>
       </div>
     </BrowserRouter>
