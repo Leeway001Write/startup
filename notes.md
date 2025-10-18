@@ -33,3 +33,6 @@ I need to do some research or asking to better understand the meaning of Hosted 
 ## CSS
 - Bootstrap is very new to me, and so far feels harder than CSS because I can't get as granular with it.
 - Bootstrap is great for easy formatting, but animations and more customized styles require CSS
+
+## JavaScript
+- While using Async/Wait, make sure function names are spelled correctly! I had a typo, and so the `try` block was jumping to the `catch` and I had no idea why until I noticed the typo.
