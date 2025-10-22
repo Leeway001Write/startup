@@ -36,3 +36,15 @@ I need to do some research or asking to better understand the meaning of Hosted 
 
 ## JavaScript
 - While using Async/Wait, make sure function names are spelled correctly! I had a typo, and so the `try` block was jumping to the `catch` and I had no idea why until I noticed the typo.
+
+## Database
+- **Middleware** - The procedures that run between endpoint requests to backend API before responding. Example:
+```js
+app.use(function(req, res, next) {
+  // 2
+});
+
+app.get('/path', (req, res) => { // 1
+  res.send(''); // 3
+});
+```
