@@ -89,6 +89,17 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 - [ ] **All functionality implemented or mocked out** - I did not complete this part of the deliverable.
 - [ ] **Hooks** - I did not complete this part of the deliverable.
 
+#### Functionality to add:
+- [ ] Login page unauth & auth modes
+- [ ] Inbox: Messages appear `websocket`
+- [ ] Inbox: Messages clickable & readable (`state` determines which one)
+- [ ] Inbox: New messages have "new" badge (`state`)
+- [ ] Inbox: Messages stored in `localstorage db`
+- [ ] Inbox: (Optional) hide message view when no message is selected
+- [ ] Write: Direct to send page
+- [ ] Send: Throw button plays animation
+- [ ] Send: Fake `API` data for weather, loads with `useEffect`
+
 ## 🚀 Service deliverable
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
