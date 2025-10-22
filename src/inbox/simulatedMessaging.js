@@ -9,7 +9,6 @@ export function simulateMessages(callback) {
             }
         );
         message++;
-        from++;
     }, 5000);
 
     return () => clearInterval(intervalId); // Returns function to terminate interval
