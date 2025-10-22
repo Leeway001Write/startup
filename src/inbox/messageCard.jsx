@@ -3,7 +3,7 @@ import './inbox.css';
 
 import plane from '../assets/paper-plane.png';
 
-export default function MessageCard({ text }) {
+export default function MessageCard({ sender, content }) {
     return (
         <button className="btn w-100">
             <div className="card d-flex flex-row justify-content-start">
@@ -12,8 +12,8 @@ export default function MessageCard({ text }) {
                     <div className="badge text-bg-secondary">NEW</div>
                 </div>
                 <div className="card-body">
-                    <h5 className="card-title text-start"><strong>Friend's Name</strong></h5>
-                    <p className="card-text text-start">{ text }</p>
+                    <h5 className="card-title text-start"><strong>From: { sender }</strong></h5>
+                    <p className="card-text text-start">{ content }</p>
                 </div>
             </div>
         </button>

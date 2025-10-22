@@ -1,9 +1,15 @@
 export function simulateMessages(callback) {
-    var message = 1;
+    let message = 1;
 
     const intervalId = setInterval(() => {
-        callback(`Message: ${message}`);
+        callback(
+            {
+                sender: "Sender number " + message,
+                content: "Message number " + message
+            }
+        );
         message++;
+        from++;
     }, 5000);
 
     return () => clearInterval(intervalId); // Returns function to terminate interval

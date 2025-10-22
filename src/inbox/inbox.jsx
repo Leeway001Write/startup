@@ -25,7 +25,7 @@ export default function Inbox() {
                 <div className="messages border rounded flex-fill overflow-y-scroll">
 
                     { messagesList.map((msg, i) => (
-                        <MessageCard key={i} text={msg} />
+                        <MessageCard key={i} sender={msg.sender} content={msg.content} />
                     ))}
 
                 </div>
