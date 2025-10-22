@@ -1,9 +1,19 @@
 import React from 'react';
+import { useState, useEffect } from 'react';
+import MessageCard from './messageCard.jsx';
 import './inbox.css';
 
-import plane from '../assets/paper-plane.png';
+import { simulateMessages } from './simulatedMessaging.js';
 
 export default function Inbox() {
+    useEffect(() => {
+        const stopMessages = simulateMessages(() => {
+            console.log("Message Recieved");
+        })
+
+        return () => stopMessages();
+    })
+
     return (
         <main className="flex-fill d-flex flex-column justify-content-between align-items-center p-3">
             <h2>Inbox</h2>
@@ -11,78 +21,7 @@ export default function Inbox() {
             <div className="window container-fluid d-flex gap-5 flex-fill">
                 <div className="messages border rounded flex-fill overflow-y-scroll">
 
-                <button className="btn w-100">
-                    <div className="card d-flex flex-row justify-content-start">
-                    <div className="d-flex flex-column p-3">
-                        <img className="img-fluid" src={plane} width="48"/>
-                        <div className="badge text-bg-secondary">NEW</div>
-                    </div>
-                    <div className="card-body">
-                        <h5 className="card-title"><strong>Friend's Name</strong></h5>
-                        <p className="card-text">Message preview...</p>
-                    </div>
-                    </div>
-                </button>
-
-                <button className="btn w-100">
-                    <div className="card d-flex flex-row justify-content-start">
-                    <div className="d-flex flex-column p-3">
-                        <img className="img-fluid" src={plane} width="48"/>
-                    </div>
-                    <div className="card-body">
-                        <h5 className="card-title">Friend's Name</h5>
-                        <p className="card-text">Message preview...</p>
-                    </div>
-                    </div>
-                </button>
-
-                <button className="btn w-100">
-                    <div className="card d-flex flex-row justify-content-start">
-                    <div className="d-flex flex-column p-3">
-                        <img className="img-fluid" src={plane} width="48"/>
-                    </div>
-                    <div className="card-body">
-                        <h5 className="card-title">Friend's Name</h5>
-                        <p className="card-text">Message preview...</p>
-                    </div>
-                    </div>
-                </button>
-
-                <button className="btn w-100">
-                    <div className="card d-flex flex-row justify-content-start">
-                    <div className="d-flex flex-column p-3">
-                        <img className="img-fluid" src={plane} width="48"/>
-                    </div>
-                    <div className="card-body">
-                        <h5 className="card-title">Friend's Name</h5>
-                        <p className="card-text">Message preview...</p>
-                    </div>
-                    </div>
-                </button>
-
-                <button className="btn w-100">
-                    <div className="card d-flex flex-row justify-content-start">
-                    <div className="d-flex flex-column p-3">
-                        <img className="img-fluid" src={plane} width="48"/>
-                    </div>
-                    <div className="card-body">
-                        <h5 className="card-title">Friend's Name</h5>
-                        <p className="card-text">Message preview...</p>
-                    </div>
-                    </div>
-                </button>
-
-                <button className="btn w-100">
-                    <div className="card d-flex flex-row justify-content-start">
-                    <div className="d-flex flex-column p-3">
-                        <img className="img-fluid" src={plane} width="48"/>
-                    </div>
-                    <div className="card-body">
-                        <h5 className="card-title">Friend's Name</h5>
-                        <p className="card-text">Message preview...</p>
-                    </div>
-                    </div>
-                </button>
+                <MessageCard />
 
                 </div>
 
