@@ -1,9 +1,10 @@
 export function simulateMessages(callback) {
-    let message = "Hello World!";
+    var message = 1;
 
     const intervalId = setInterval(() => {
-        callback(message);
+        callback(`Message: ${message}`);
+        message++;
     }, 5000);
 
-    return () => clearInterval(intervalId);
+    return () => clearInterval(intervalId); // Returns function to terminate interval
 }
