@@ -11,15 +11,11 @@ export default function Inbox() {
     useEffect(() => {
         // Start simulating messages, save function to terminate interval
         const stopMessages = simulateMessages((newMessage) => {
-            setMessagesList((currentList) => [...currentList, newMessage]);
+            setMessagesList((currentList) => [newMessage, ...currentList]);
         });
 
         return () => stopMessages();
-    }, []);
-
-    useEffect(() => {
-  console.log("Updated messages:", messagesList);
-}, [messagesList]);
+    }, [])
 
     return (
         <main className="flex-fill d-flex flex-column justify-content-between align-items-center p-3">
@@ -28,7 +24,9 @@ export default function Inbox() {
             <div className="window container-fluid d-flex gap-5 flex-fill">
                 <div className="messages border rounded flex-fill overflow-y-scroll">
 
-                <MessageCard />
+                    { messagesList.map((msg, i) => (
+                        <MessageCard key={i} text={msg} />
+                    ))}
 
                 </div>
 
