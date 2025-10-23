@@ -12,9 +12,11 @@ export default function Inbox() {
 
     useEffect(() => {
         // Load stored all messages
-        if (!localStorage.getItem('messages')) {
-            const template = { dallin: [], lee: [] };
-            localStorage.setItem('messages', JSON.stringify(template));
+        let user = localStorage.getItem('user');
+        if (!localStorage.getItem('messages') || !JSON.parse(localStorage.getItem('messages'))[user]) {
+            const current = JSON.parse(localStorage.getItem('messages')) || {};
+            current[user] = [];
+            localStorage.setItem('messages', JSON.stringify(current));
         }
         setMessagesList(getMessages(messagesList));
 
@@ -59,12 +61,12 @@ export default function Inbox() {
 }
 
 function getMessages() {
-    let user = 'dallin'; //localStorage.getItem('user');
+    let user = localStorage.getItem('user');
     return JSON.parse(localStorage.getItem('messages'))[user];
 }
 
 function saveMessage(msg) {
-    let user = 'dallin'; 
+    let user = localStorage.getItem('user');
     let messageDB = JSON.parse(localStorage.getItem('messages'));
     messageDB[user] = [msg, ...messageDB[user]];
     localStorage.setItem('messages', JSON.stringify(messageDB));
