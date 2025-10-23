@@ -17,6 +17,12 @@ export default function Inbox() {
         return () => stopMessages();
     }, [])
 
+    const clickMessageListener = function(messageKey) {
+        const updated = [...messagesList];
+        updated[messageKey].isUnread = false;
+        setMessagesList(updated);
+    };
+
     return (
         <main className="flex-fill d-flex flex-column justify-content-between align-items-center p-3">
             <h2>Inbox</h2>
@@ -25,7 +31,7 @@ export default function Inbox() {
                 <div className="messages border rounded flex-fill overflow-y-scroll">
 
                     { messagesList.map((msg, i) => (
-                        <MessageCard key={i} sender={msg.sender} content={msg.content} />
+                        <MessageCard key={i} sender={msg.sender} content={msg.content} isUnread={msg.isUnread} markAsRead={ () => clickMessageListener(i) } />
                     ))}
 
                 </div>

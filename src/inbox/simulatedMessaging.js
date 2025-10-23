@@ -5,7 +5,8 @@ export function simulateMessages(callback) {
         callback(
             {
                 sender: "Sender number " + message,
-                content: "Message number " + message
+                content: "Message number " + message,
+                isUnread: true
             }
         );
         message++;

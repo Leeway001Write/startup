@@ -1,15 +1,25 @@
 import React from 'react';
+import { useState } from 'react';
 import './inbox.css';
 
 import plane from '../assets/paper-plane.png';
 
-export default function MessageCard({ sender, content }) {
+export default function MessageCard({ sender, content, isUnread, markAsRead}) {
+
+    const handleClick = function() {
+        if (isUnread) {
+            markAsRead();
+        }
+
+        // Open message
+    };
+
     return (
-        <button className="btn w-100">
+        <button className="btn w-100" onClick={ handleClick }>
             <div className="card d-flex flex-row justify-content-start">
                 <div className="d-flex flex-column p-3">
                     <img className="img-fluid" src={plane} width="48"/>
-                    <div className="badge text-bg-secondary">NEW</div>
+                    {isUnread && <NewMessageBadge />}
                 </div>
                 <div className="card-body">
                     <h5 className="card-title text-start"><strong>From: { sender }</strong></h5>
@@ -17,5 +27,11 @@ export default function MessageCard({ sender, content }) {
                 </div>
             </div>
         </button>
+    )
+}
+
+function NewMessageBadge() {
+    return (
+        <div className="badge text-bg-secondary">NEW</div>
     )
 }
