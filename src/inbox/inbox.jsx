@@ -11,9 +11,17 @@ export default function Inbox() {
     const [currentMessage, setCurrentMessage] = useState(null);
 
     useEffect(() => {
+        // Load stored all messages
+        if (!localStorage.getItem('messages')) {
+            const template = { dallin: [], lee: [] };
+            localStorage.setItem('messages', JSON.stringify(template));
+        }
+        setMessagesList(getMessages(messagesList));
+
         // Start simulating messages, save function to terminate interval
         const stopMessages = simulateMessages((newMessage) => {
             setMessagesList((currentList) => [newMessage, ...currentList]);
+            saveMessage(newMessage);
         });
 
         return () => stopMessages();
@@ -48,4 +56,16 @@ export default function Inbox() {
             </div>      
         </main>
     )
+}
+
+function getMessages() {
+    let user = 'dallin'; //localStorage.getItem('user');
+    return JSON.parse(localStorage.getItem('messages'))[user];
+}
+
+function saveMessage(msg) {
+    let user = 'dallin'; 
+    let messageDB = JSON.parse(localStorage.getItem('messages'));
+    messageDB[user] = [msg, ...messageDB[user]];
+    localStorage.setItem('messages', JSON.stringify(messageDB));
 }
