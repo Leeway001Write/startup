@@ -4,18 +4,10 @@ import './inbox.css';
 
 import plane from '../assets/paper-plane.png';
 
-export default function MessageCard({ sender, content, isUnread, markAsRead}) {
-
-    const handleClick = function() {
-        if (isUnread) {
-            markAsRead();
-        }
-
-        // Open message
-    };
+export default function MessageCard({ sender, content, isUnread, onClick}) {
 
     return (
-        <button className="btn w-100" onClick={ handleClick }>
+        <button className="btn w-100" onClick={ onClick }>
             <div className="card d-flex flex-row justify-content-start">
                 <div className="d-flex flex-column p-3">
                     <img className="img-fluid" src={plane} width="48"/>
