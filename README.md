@@ -91,9 +91,9 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 #### Functionality to add:
 - [ ] Login page unauth & auth modes
-- [ ] Inbox: Messages appear `websocket`
-- [ ] Inbox: Messages clickable & readable (`state` determines which one)
-- [ ] Inbox: New messages have "new" badge (`state`)
+- [x] Inbox: Messages appear `websocket`
+- [x] Inbox: Messages clickable & readable (`state` determines which one)
+- [x] Inbox: New messages have "new" badge (`state`)
 - [ ] Inbox: Messages stored in `localstorage db`
 - [ ] Inbox: (Optional) hide message view when no message is selected
 - [ ] Write: Direct to send page
@@ -128,3 +128,7 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 - [ ] **Data sent over WebSocket connection** - I did not complete this part of the deliverable.
 - [ ] **WebSocket data displayed** - I did not complete this part of the deliverable.
 - [ ] **Application is fully functional** - I did not complete this part of the deliverable.
+
+
+## Future improvements
+- [ ] Truncate message previews in Inbox
