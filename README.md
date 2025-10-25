@@ -130,6 +130,10 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 - [ ] **WebSocket data displayed** - I did not complete this part of the deliverable.
 - [ ] **Application is fully functional** - I did not complete this part of the deliverable.
 
+## Known bugs
+- Messages don't get marked as read in DB
+- Messages should only be sent if they have a recipient and content. Disable button otherwise
+- Odd abiliy to be signed in as "null" isn't good, all "null" users will see and send the same anonymous messages
 
 ## Future improvements
 - [ ] Truncate message previews in Inbox
