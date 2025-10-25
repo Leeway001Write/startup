@@ -11,7 +11,7 @@ export default function Inbox() {
     const [currentMessage, setCurrentMessage] = useState(null);
 
     useEffect(() => {
-        // Load stored all messages
+        // Load all stored messages
         let user = localStorage.getItem('user');
         if (!localStorage.getItem('messages') || !JSON.parse(localStorage.getItem('messages'))[user]) {
             const current = JSON.parse(localStorage.getItem('messages')) || {};

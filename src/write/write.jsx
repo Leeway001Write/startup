@@ -8,10 +8,11 @@ export default function Write() {
 
     const sendHandler = function() {
         // Save the message locally
-        console.log(document.getElementById("letter").value);
+        let recipient = document.getElementById("recipient").value
+        let message = document.getElementById("letter").value;
 
         // Navigate to "Send" page
-        navigate("/send");
+        navigate("/send", { state: { recipient, message } });
     }
 
     return (
@@ -20,8 +21,8 @@ export default function Write() {
             <form>
                 <div className="paper p-0 d-flex flex-column">
                     <div className="recipient-line p-0 m-0 d-flex align-items-center">
-                    <label className="writing p-0">Dear</label>
-                    <input type="text" className="content p-3" placeholder="recipient,"></input>
+                        <label className="writing p-0">Dear</label>
+                        <input id="recipient" type="text" className="content p-3" placeholder="recipient,"></input>
                     </div>
                     <textarea id="letter" className="content writing p-3" placeholder="Write your message here"></textarea>
                 </div>

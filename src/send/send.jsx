@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import './send.css';
 
 import plane from '../assets/paper-plane.png';
@@ -6,6 +7,10 @@ import house from '../assets/house.jpeg';
 
 export default function Send() {
     const [isThrown, setIsThrown] = useState(false);
+
+    const location = useLocation();
+    const recipient = location.state.recipient;
+    const message = location.state.message;
 
     useEffect(() => {
         let weather = getWeather(); // Stub for weather API
@@ -32,9 +37,25 @@ export default function Send() {
     }, []);
 
     const throwPlane = function() {
-        document.getElementById("plane").classList.remove("not-thrown");
-        document.getElementById("plane").classList.add("thrown");
-        setIsThrown(true);
+        if (!isThrown) {
+            // Animate plane
+            document.getElementById("plane").classList.remove("not-thrown");
+            document.getElementById("plane").classList.add("thrown");
+
+            // Update button
+            setIsThrown(true);
+
+            // Send message
+            let user = localStorage.getItem('user');
+            let msg = {
+                sender: user,
+                content: message,
+                isUnread: true
+            };
+            let messageDB = JSON.parse(localStorage.getItem('messages'));
+            messageDB[recipient] = [msg, ...messageDB[recipient]];
+            localStorage.setItem('messages', JSON.stringify(messageDB));
+        }
     };
 
     return (
