@@ -134,6 +134,13 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 - Messages don't get marked as read in DB
 - Messages should only be sent if they have a recipient and content. Disable button otherwise
 - Odd abiliy to be signed in as "null" isn't good, all "null" users will see and send the same anonymous messages
+- Can't open Send page manually anymore because it's looking for data from Write
 
 ## Future improvements
+- [ ] Include recipient line on letter in inbox ("Dear__"), and sender line in writing page ("Sincerely, ___")
 - [ ] Truncate message previews in Inbox
+- [ ] Message management: delete messages, reply, etc.
+- [ ] MUCH better visuals:
+    - [ ] More playable (drag-and-throw)
+    - [ ] Folding paper airplane
+    - [ ] More graphical inbox?
