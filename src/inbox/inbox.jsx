@@ -36,6 +36,8 @@ export default function Inbox() {
             const updated = [...messagesList];
             updated[messageKey].isUnread = false;
             setMessagesList(updated);
+
+            saveMessage(messagesList[messageKey]); // Mark as read in local DB
         }
     };
 
