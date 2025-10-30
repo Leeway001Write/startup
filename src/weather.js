@@ -1,10 +1,16 @@
-export async function test() {
+export async function updateWeather() {
+    // Get location
     const pos = await getPosition();
-    const result = await getCurrentData(pos.coords.latitude, pos.coords.longitude);
-    const json = await result.json()
-    const weatherDesc = getCurrentWeatherDesc(json);
 
-    return `Weather is ${weatherDesc}`;
+    // Get local weather
+    const result = await getRawWeatherData(pos.coords.latitude, pos.coords.longitude);
+    const json = await result.json()
+    const weatherDesc = extractWeatherDesc(json);
+
+    // Save weather in local storage
+    localStorage.setItem('weather', weatherDesc);
+
+    return weatherDesc;
 }
 
 async function getPosition() {
@@ -13,9 +19,9 @@ async function getPosition() {
     });
 }
 
-function getCurrentWeatherDesc(result) {
+function extractWeatherDesc(result) {
     const weather_code = result.current.weather_code;
-    if (!getIsDay(result)) {
+    if (!extractIsDay(result)) {
         return "night";
     } else if (weather_code >= 0 && weather_code <= 1) {
         return "sunny";
@@ -30,15 +36,11 @@ function getCurrentWeatherDesc(result) {
     return "unknown";
 }
 
-function getIsDay(result) {
+function extractIsDay(result) {
     const is_day = result.current.is_day;
     return is_day == 1;
 }
 
-async function getCurrentData(lat, lon) {
+async function getRawWeatherData(lat, lon) {
     return await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=is_day,weather_code&timezone=auto`);
-}
-
-function getHours() {
-    return new Date().getHours();
 }

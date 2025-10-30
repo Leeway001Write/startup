@@ -1,10 +1,20 @@
 import React from "react";
+import { useEffect } from "react";
 import './write.css';
 
 import { useNavigate } from "react-router-dom";
+import { updateWeather } from '../weather.js';
 
 export default function Write() {
     const navigate = useNavigate();
+
+    useEffect(() => {
+        // Fetch weather now if possible to make opening the Send page smoother for the user
+        async function fetchWeather() {
+            console.log("Updated weather before going to Send page: ", await updateWeather());
+        }
+        fetchWeather();
+    }, []);
 
     const sendHandler = function() {
         // Save the message locally
