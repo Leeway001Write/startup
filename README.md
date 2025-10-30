@@ -146,3 +146,4 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
     - [ ] More playable (drag-and-throw)
     - [ ] Folding paper airplane
     - [ ] More graphical inbox?
+- [ ] Allow for dark mode

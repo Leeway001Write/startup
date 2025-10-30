@@ -33,6 +33,25 @@ I need to do some research or asking to better understand the meaning of Hosted 
 ## CSS
 - Bootstrap is very new to me, and so far feels harder than CSS because I can't get as granular with it.
 - Bootstrap is great for easy formatting, but animations and more customized styles require CSS
+#### How to allow dark mode
+I did some experimenting and figured out a way I could implement system theme detection and automatically enable dark mode. Here's a general outline:
+- A high-level div (body makes good sense) just needs the `data-bs-theme` attribute. [Using a hook to update theme](https://medium.com/hypersphere-codes/detecting-system-theme-in-javascript-css-react-f6b961916d48) here could work great.
+- Body element needs to be colored with bootstrap theme colors
+
+```js
+// App.jsx //
+
+<div className="body" data-bs-theme="dark">...</div>
+```
+
+```css
+/* App.css */
+.body {
+    background-color: var(--bs-body-bg);
+    color: var(--bs-body-color);
+}
+```  
+Now those colors--and the colors of any descenant elements without specified colors--will respond to theme.
 
 ## JavaScript
 - While using Async/Wait, make sure function names are spelled correctly! I had a typo, and so the `try` block was jumping to the `catch` and I had no idea why until I noticed the typo.
