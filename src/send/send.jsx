@@ -28,8 +28,11 @@ export default function Send() {
             case "snow":
                 color = "#FFFFFF"; // white
                 break;
+            case "night":
+                color = "#312F36"; //black
+                break;
             default:
-                color = "#000";
+                color = "#87CEEB";
                 break;
         }
 
