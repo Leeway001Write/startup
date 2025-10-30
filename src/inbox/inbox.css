@@ -1,12 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Mynerve&display=swap');
 
-#window #controls {
+#controls {
     width: 60%;
 }
 
 .messages {
     width: 100%;
-    height: 70vh;
+    height: auto;
+    max-height: 70vh;
 }
 
 .view-message {
@@ -22,19 +23,24 @@
 }
 
 @media (max-width: 800px) {
-    .window {
+    #window {
         flex-direction: column-reverse;
+    }
+
+    #controls {
+        width: 90vw;
+        height: auto;
+        max-height: none;
+    }
+
+    .messages {
+        max-height: none;
+        overflow-y: auto;
     }
 
     .view-message {
         height: 75vh;
         width: 90vw;
         padding: 10% 0 !important;
-    }
-
-    .messages {
-        width: 90vw;
-        height: auto;
-        overflow-y: auto;
     }
 }
