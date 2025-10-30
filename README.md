@@ -106,8 +106,8 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
 - [ ] **Node.js/Express HTTP service** - I did not complete this part of the deliverable.
-- [ ] **Static middleware for frontend** - I did not complete this part of the deliverable.
-- [ ] **Calls to third party endpoints** - I did not complete this part of the deliverable.
+- [x] **Static middleware for frontend** - Serves index.html - Currently an odd bug with reloading the page
+- [x] **Calls to third party endpoints** - Weather call changes sky color to match current local weather (on Write page then Send page)
 - [ ] **Backend service endpoints** - I did not complete this part of the deliverable.
 - [ ] **Frontend calls service endpoints** - I did not complete this part of the deliverable.
 - [ ] **Supports registration, login, logout, and restricted endpoint** - I did not complete this part of the deliverable.
@@ -137,6 +137,8 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 - Can't open Send page manually anymore because it's looking for data from Write
 
 ## Future improvements
+- [ ] Fix server bug where reloading the page results in "Cannot GET /\<route>" Error
+- [ ] Figure out why weather doesn't seem to be working on mobile
 - [ ] Include recipient line on letter in inbox ("Dear__"), and sender line in writing page ("Sincerely, ___")
 - [ ] Truncate message previews in Inbox
 - [ ] Message management: delete messages, reply, etc.
