@@ -37,7 +37,8 @@ export default function Inbox() {
             updated[messageKey].isUnread = false;
             setMessagesList(updated);
 
-            saveMessage(messagesList[messageKey]); // Mark as read in local DB
+            console.log(messageKey);
+            markSavedMessageAsRead(messagesList[messageKey]); // Mark as read in local DB
         }
     };
 
@@ -89,4 +90,12 @@ function saveMessage(msg) {
     let messageDB = JSON.parse(localStorage.getItem('messages'));
     messageDB[user] = [msg, ...messageDB[user]];
     localStorage.setItem('messages', JSON.stringify(messageDB));
+}
+
+function markSavedMessageAsRead(msg) {
+    /*
+        This DOES NOT WORK properly. Currently, a *COPY* of messages are saved as unread. It works in a single session, but upon reopening the inbox the duplicates will show.
+        The solution likely involves giving each message a unique key
+    */
+   saveMessage(msg);
 }
