@@ -39,13 +39,6 @@ export default function Send() {
 
     const throwPlane = function() {
         if (!isThrown) {
-            // Animate plane
-            document.getElementById("plane").classList.remove("not-thrown");
-            document.getElementById("plane").classList.add("thrown");
-
-            // Update button
-            setIsThrown(true);
-
             // Send message
             let user = localStorage.getItem('user');
             let msg = {
@@ -53,9 +46,27 @@ export default function Send() {
                 content: message,
                 isUnread: true
             };
+            let success = false;
             let messageDB = JSON.parse(localStorage.getItem('messages'));
-            messageDB[recipient] = [msg, ...messageDB[recipient]];
+            try {
+                messageDB[recipient] = [msg, ...messageDB[recipient]];
+                success = true;
+            } catch {
+                if (confirm(`User "${recipient}" does not yet exist. Send anyway?`)) {
+                    messageDB[recipient] = [msg];
+                    success = true;
+                }
+            }
             localStorage.setItem('messages', JSON.stringify(messageDB));
+
+            if (success) {
+                // Animate plane
+                document.getElementById("plane").classList.remove("not-thrown");
+                document.getElementById("plane").classList.add("thrown");
+                
+                // Update button
+                setIsThrown(true);
+            }
         }
     };
 
