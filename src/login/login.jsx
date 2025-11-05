@@ -24,10 +24,17 @@ export default function Login() {
         loginUser(null);
     }
 
+    const testBackend = async () => {
+        let result = await fetch('/api/test', {method: 'GET'});
+        let data = await result.json();
+        console.log(data);
+    };
+
     return (
         <main className="flex-fill d-flex flex-column justify-content-center align-items-center">
             {user == null && <Unauthenticated onLogin={ loginUser } />}
             {user != null && <Authenticated user={ user } onLogout={ logoutUser }/>}
+            <button className="btn" onClick={ testBackend }>TEST BACKEND</button>
         </main>
     );
 }
