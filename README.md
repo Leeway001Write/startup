@@ -105,7 +105,7 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Node.js/Express HTTP service** - I did not complete this part of the deliverable.
+- [x] **Node.js/Express HTTP service** - I did not complete this part of the deliverable.
 - [x] **Static middleware for frontend** - Serves index.html - Currently an odd bug with reloading the page
 - [x] **Calls to third party endpoints** - Weather call changes sky color to match current local weather (on Write page then Send page)
 - [ ] **Backend service endpoints** - I did not complete this part of the deliverable.

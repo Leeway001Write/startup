@@ -24,21 +24,10 @@ export default function Login() {
         loginUser(null);
     }
 
-    const getWeather = async function() {
-        console.log(await updateWeather());
-    }
-
     return (
         <main className="flex-fill d-flex flex-column justify-content-center align-items-center">
             {user == null && <Unauthenticated onLogin={ loginUser } />}
             {user != null && <Authenticated user={ user } onLogout={ logoutUser }/>}
-            <button className="btn" onClick={ getWeather }>GET WEATHER</button>
         </main>
     );
-}
-
-function getPosition() {
-    return new Promise((resolve, reject) => {
-        navigator.geolocation.getCurrentPosition(resolve, reject);
-    });
 }
