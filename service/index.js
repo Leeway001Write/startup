@@ -124,7 +124,7 @@ apiRouter.post('/send', verifyAuth, async (req, res) => {
 apiRouter.get('/inbox', verifyAuth, async (req, res) => {
     const user = await findUser('token', req.cookies[authCookieName]);
     
-    res.status(201).send(messages[user.email]);
+    res.status(201).send(messages[user.email] || []);
 });
 
 // Test

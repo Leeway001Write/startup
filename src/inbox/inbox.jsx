@@ -76,9 +76,11 @@ export default function Inbox() {
                     <button id="delete-button" className="btn btn-small bg-warning text-white" onClick={ handleDelete }>Delete All</button>
                     <div className="messages border rounded flex-fill overflow-y-scroll">
 
-                        { messagesList.map((msg, i) => (
-                            <MessageCard key={i} sender={msg.sender} content={msg.content} isUnread={msg.isUnread} onClick={ () => clickMessageHandler(i) } />
-                        ))}
+                        { messagesList.length > 0 &&
+                            messagesList.map((msg, i) => (
+                                <MessageCard key={i} sender={msg.sender} content={msg.content} isUnread={msg.isUnread} onClick={ () => clickMessageHandler(i) } />
+                            ))
+                        }
 
                     </div>
                 </div>
