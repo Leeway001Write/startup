@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function Unauthenticated({ onLogin }) {
+export default function Unauthenticated({ onLogin, errorText }) {
 
     const handleSubmit = function(event) {
         event.preventDefault();
@@ -8,8 +8,6 @@ export default function Unauthenticated({ onLogin }) {
         const formData = new FormData(form);
         const user = formData.get('username');
         const pass = formData.get('password');
-
-        console.log(user, pass);
 
         onLogin(user, pass);
     };
@@ -20,6 +18,7 @@ export default function Unauthenticated({ onLogin }) {
             <form className="d-flex flex-column align-items-end" onSubmit={handleSubmit}>
                 <input name="username" type="text" className="form-control mt-3" placeholder="username"></input>
                 <input name="password" type="password" className="form-control mt-2" placeholder="password"></input>
+                {errorText && errorText != "" && <p className="text-warning"> { errorText }</p>}
                 <button type="submit" className="btn bg-secondary mt-3">Login</button>
             </form>
         </>

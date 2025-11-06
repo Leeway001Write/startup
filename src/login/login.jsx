@@ -7,15 +7,22 @@ import { updateWeather } from '../weather.js';
 
 export default function Login() {
     const [user, setUser] = useState(null);
+    const [errorText, setErrorText] = useState("");
 
     useEffect(() => {
         let currentUser = localStorage.getItem('user');
-        if (currentUser) {
+        if (currentUser && currentUser != "null") {
             setUser(currentUser);
         }
     }, []);
 
     const authenticateUser = async function(endpoint, username, password) {
+        if (!username || username === "" ||
+            !password || password === "") {
+            setErrorText("Missing username or password");
+            return;
+        }
+
         const response = await fetch(endpoint, {
             method: 'POST',
             body: JSON.stringify({ email: username, password: password}),
@@ -61,7 +68,7 @@ export default function Login() {
 
     return (
         <main className="flex-fill d-flex flex-column justify-content-center align-items-center">
-            {user == null && <Unauthenticated onLogin={ loginUser } />}
+            {user == null && <Unauthenticated onLogin={ loginUser } errorText={ errorText } />}
             {user != null && <Authenticated user={ user } onLogout={ logoutUser }/>}
         </main>
     );
