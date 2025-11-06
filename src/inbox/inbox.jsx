@@ -23,30 +23,21 @@ export default function Inbox() {
                 }
             });
             let messages = await response.json();
-            console.log(messages);
-            console.log(messages[0]);
 
             
-            //setMessagesList(messages);
+            setMessagesList(messages);
         }
         loadMessages();
 
-        /*
-        let user = localStorage.getItem('user');
-        if (!localStorage.getItem('messages') || !JSON.parse(localStorage.getItem('messages'))[user]) {
-            const current = JSON.parse(localStorage.getItem('messages')) || {};
-            current[user] = [];
-            localStorage.setItem('messages', JSON.stringify(current));
-        }
-        */
-
         // Start simulating messages, save function to terminate interval
+        /* 
         const stopMessages = simulateMessages((newMessage) => {
             setMessagesList((currentList) => [newMessage, ...currentList]);
             saveMessage(newMessage);
         });
 
         return () => stopMessages();
+        */
     }, [])
 
     const clickMessageHandler = function(messageKey) {
