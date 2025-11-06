@@ -37,7 +37,7 @@ export default function Send() {
         fetchWeather();
     }, []);
 
-    const throwPlane = function() {
+    const throwPlane = async function() {
         if (!isThrown) {
             // Send message
             let user = localStorage.getItem('user');
@@ -46,6 +46,9 @@ export default function Send() {
                 content: message,
                 isUnread: true
             };
+            const data = await sendMessage(msg, recipient);
+            console.log(data);
+            /*
             let success = false;
             let messageDB = JSON.parse(localStorage.getItem('messages'));
             try {
@@ -58,8 +61,9 @@ export default function Send() {
                 }
             }
             localStorage.setItem('messages', JSON.stringify(messageDB));
+            */
 
-            if (success) {
+            if (data.status === "sent") {
                 // Animate plane
                 document.getElementById("plane").classList.remove("not-thrown");
                 document.getElementById("plane").classList.add("thrown");
@@ -89,6 +93,21 @@ export default function Send() {
             { isThrown && <button type="button" className="throw-button btn bg-primary btn-lg text-black fw-bold">Sent!</button> }
         </main>
     )
+}
+
+async function sendMessage(msg, recipient) {
+    const response = await fetch('api/send', {
+        method: 'POST',
+        body: JSON.stringify({
+            recipient: recipient,
+            message: msg
+        }),
+        headers: {
+            'Content-Type': 'application/json; charset=UTF-8'
+        }
+    });
+    
+    return await response.json();
 }
 
 function skyForWeather(weather) {

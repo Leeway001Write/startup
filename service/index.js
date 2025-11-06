@@ -118,6 +118,26 @@ const verifyAuth = async (req, res, next) => {
 ////////////////////////////
 // Applicaiton Endpoints //
 
+// Send message
+apiRouter.post('/send', verifyAuth, async (req, res) => {
+    console.log("Receiving message...");
+    const user = await findUser('token', req.cookies[authCookieName]);
+
+    req.body.message.sender = user; // Make sure the user isn't pretending to be someone else
+    console.log("Sending message...");
+
+    try {
+        messages[req.body.recipient] = [req.body.message, ...messages[req.body.recipient]];
+        console.log("Sent!");
+    } catch {
+        // Create new inbox
+        messages[req.body.recipient] = [req.body.message];
+        console.log("Sent! (first in inbox)");
+    }
+
+    res.status(201).send({status: "sent"});
+})
+
 // Test
 apiRouter.get('/test', (_req, res) => {
     res.send({text: "Hello World!"});
