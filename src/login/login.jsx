@@ -51,7 +51,7 @@ export default function Login() {
             method: 'DELETE'
         })
         .catch(() => {
-            // Logout failed. Assume user is offline
+            // Logout failed. Assume user or server is offline
         })
         .finally(() => {
             setUser(null);
@@ -59,23 +59,10 @@ export default function Login() {
         });
     }
 
-    const testBackend = async (isSecureTest) => {
-        let result = null
-        if (isSecureTest) {
-            result = await fetch('/api/test/secure', {method: 'GET'});
-        } else {
-            result = await fetch('/api/test', {method: 'GET'});
-        }
-        let data = await result.json();
-        console.log(data);
-    };
-
     return (
         <main className="flex-fill d-flex flex-column justify-content-center align-items-center">
             {user == null && <Unauthenticated onLogin={ loginUser } />}
             {user != null && <Authenticated user={ user } onLogout={ logoutUser }/>}
-            <button className="btn" onClick={ () => testBackend(false) }>TEST BACKEND</button>
-            <button className="btn" onClick={ () => testBackend(true) }>SECURE TEST</button>
         </main>
     );
 }

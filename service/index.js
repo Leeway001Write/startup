@@ -27,15 +27,10 @@ app.use('/api', apiRouter);
 
 // CreateAuth a new user
 apiRouter.post('/auth/create', async (req, res) => {
-console.log("create endpoint...");
   if (await findUser('email', req.body.email)) {
-    console.log(`User ${req.body.email} already exists`);
     res.status(409).send({ msg: 'Existing user' });
   } else {
-    console.log("creating user...", req.body);
     const user = await createUser(req.body.email, req.body.password);
-
-    console.log(`Created user: ${user.email}`);
 
     setAuthCookie(res, user.token);
     res.send({ email: user.email });
@@ -44,14 +39,12 @@ console.log("create endpoint...");
 
 // GetAuth login an existing user
 apiRouter.post('/auth/login', async (req, res) => {
-console.log("login endpoint...");
   const user = await findUser('email', req.body.email);
   if (user) {
     if (await bcrypt.compare(req.body.password, user.password)) {
       user.token = uuid.v4();
       setAuthCookie(res, user.token);
       res.send({ email: user.email });
-      console.log(`Logged in: ${user.email}`);
       return;
     }
   }
@@ -60,10 +53,8 @@ console.log("login endpoint...");
 
 // DeleteAuth logout a user
 apiRouter.delete('/auth/logout', async (req, res) => {
-  console.log("delete endpoint...");
   const user = await findUser('token', req.cookies[authCookieName]);
   if (user) {
-    console.log(`Signed OUT: ${user.email}`);
     delete user.token;
   }
   res.clearCookie(authCookieName);
@@ -73,10 +64,7 @@ apiRouter.delete('/auth/logout', async (req, res) => {
 // Helper functions
 
 async function createUser(email, password) {
-    console.log("hashing...");
-    const before = Date.now();
-    const passwordHash = await bcrypt.hash(password, 2);
-    console.log("hashing complete.", Date.now() - before, "ms");
+  const passwordHash = await bcrypt.hash(password, 2);
 
   const user = {
     email: email,
@@ -84,8 +72,6 @@ async function createUser(email, password) {
     token: uuid.v4(),
   };
   users.push(user);
-
-  console.log("returning user");
 
   return user;
 }
@@ -120,19 +106,15 @@ const verifyAuth = async (req, res, next) => {
 
 // Send message
 apiRouter.post('/send', verifyAuth, async (req, res) => {
-    console.log("Receiving message...");
     const user = await findUser('token', req.cookies[authCookieName]);
 
     req.body.message.sender = user.email; // Make sure the user isn't pretending to be someone else
-    console.log("Sending message...");
 
     try {
         messages[req.body.recipient] = [req.body.message, ...messages[req.body.recipient]];
-        console.log("Sent!");
     } catch {
         // Create new inbox
         messages[req.body.recipient] = [req.body.message];
-        console.log("Sent! (first in inbox)");
     }
 
     res.status(201).send({status: "sent"});
@@ -140,7 +122,6 @@ apiRouter.post('/send', verifyAuth, async (req, res) => {
 
 // Get messages
 apiRouter.get('/inbox', verifyAuth, async (req, res) => {
-    console.log("Getting messages...");
     const user = await findUser('token', req.cookies[authCookieName]);
     
     res.status(201).send(messages[user.email]);

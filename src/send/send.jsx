@@ -47,21 +47,6 @@ export default function Send() {
                 isUnread: true
             };
             const data = await sendMessage(msg, recipient);
-            console.log(data);
-            /*
-            let success = false;
-            let messageDB = JSON.parse(localStorage.getItem('messages'));
-            try {
-                messageDB[recipient] = [msg, ...messageDB[recipient]];
-                success = true;
-            } catch {
-                if (confirm(`User "${recipient}" does not yet exist. Send anyway?`)) {
-                    messageDB[recipient] = [msg];
-                    success = true;
-                }
-            }
-            localStorage.setItem('messages', JSON.stringify(messageDB));
-            */
 
             if (data.status === "sent") {
                 // Animate plane
