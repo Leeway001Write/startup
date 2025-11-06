@@ -123,7 +123,7 @@ apiRouter.post('/send', verifyAuth, async (req, res) => {
     console.log("Receiving message...");
     const user = await findUser('token', req.cookies[authCookieName]);
 
-    req.body.message.sender = user; // Make sure the user isn't pretending to be someone else
+    req.body.message.sender = user.email; // Make sure the user isn't pretending to be someone else
     console.log("Sending message...");
 
     try {
@@ -137,6 +137,14 @@ apiRouter.post('/send', verifyAuth, async (req, res) => {
 
     res.status(201).send({status: "sent"});
 })
+
+// Get messages
+apiRouter.get('/inbox', verifyAuth, async (req, res) => {
+    console.log("Getting messages...");
+    const user = await findUser('token', req.cookies[authCookieName]);
+    
+    res.status(201).send(messages[user.email]);
+});
 
 // Test
 apiRouter.get('/test', (_req, res) => {

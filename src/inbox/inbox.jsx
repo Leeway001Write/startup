@@ -12,13 +12,33 @@ export default function Inbox() {
 
     useEffect(() => {
         // Load all stored messages
+        if (!localStorage.getItem('messages')) {
+            localStorage.setItem('messages', []);
+        }
+        const loadMessages = async function() {
+            const response = await fetch('api/inbox', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json; charset=UTF-8'
+                }
+            });
+            let messages = await response.json();
+            console.log(messages);
+            console.log(messages[0]);
+
+            
+            //setMessagesList(messages);
+        }
+        loadMessages();
+
+        /*
         let user = localStorage.getItem('user');
         if (!localStorage.getItem('messages') || !JSON.parse(localStorage.getItem('messages'))[user]) {
             const current = JSON.parse(localStorage.getItem('messages')) || {};
             current[user] = [];
             localStorage.setItem('messages', JSON.stringify(current));
         }
-        setMessagesList(getMessages(messagesList));
+        */
 
         // Start simulating messages, save function to terminate interval
         const stopMessages = simulateMessages((newMessage) => {
