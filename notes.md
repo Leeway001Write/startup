@@ -56,6 +56,17 @@ Now those colors--and the colors of any descenant elements without specified col
 ## JavaScript
 - While using Async/Wait, make sure function names are spelled correctly! I had a typo, and so the `try` block was jumping to the `catch` and I had no idea why until I noticed the typo.
 
+## Service
+- Commands to test authentication:
+    ```
+    host=http://localhost:4000
+
+    curl -X POST $host/api/auth/create -H 'Content-Type: application/json' -d '{"email":"cosmo@byu.edu", "password":"byu"}' -c cookies.txt -b cookies.txt
+
+    curl -X GET $host/api/test/secure -H "Content-Type: application/json" -c cookies.txt -b cookies.txt
+    ```
+- Turns out lots of errors don't print when you're running the server via `node`. I got really confused when user creation started ending execution after bcrypt hashes the password, I thought it was stalling (because my print statements made it look like it was), but the client was getting an undefined result back. Turns out, the password was undefined in the request body.
+
 ## Database
 - **Middleware** - The procedures that run between endpoint requests to backend API before responding. Example:
 ```js

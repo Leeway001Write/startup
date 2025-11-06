@@ -7,10 +7,11 @@ export default function Unauthenticated({ onLogin }) {
         const form = event.currentTarget;
         const formData = new FormData(form);
         const user = formData.get('username');
+        const pass = formData.get('password');
 
-        console.log(user);
+        console.log(user, pass);
 
-        onLogin(user);
+        onLogin(user, pass);
     };
 
     return (
