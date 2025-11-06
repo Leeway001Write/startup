@@ -22,6 +22,7 @@ export default function Login() {
             setErrorText("Missing username or password");
             return;
         }
+        setErrorText("");
 
         const response = await fetch(endpoint, {
             method: 'POST',
