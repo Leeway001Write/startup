@@ -108,9 +108,9 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 - [x] **Node.js/Express HTTP service** - I did not complete this part of the deliverable.
 - [x] **Static middleware for frontend** - Serves index.html - Currently an odd bug with reloading the page
 - [x] **Calls to third party endpoints** - Weather call changes sky color to match current local weather (on Write page then Send page)
-- [x] **Backend service endpoints** - I did not complete this part of the deliverable.
-- [x] **Frontend calls service endpoints** - I did not complete this part of the deliverable.
-- [x] **Supports registration, login, logout, and restricted endpoint** - I did not complete this part of the deliverable.
+- [x] **Backend service endpoints** - For getting and sending messages
+- [x] **Frontend calls service endpoints** - "
+- [x] **Supports registration, login, logout, and restricted endpoint** - Login has some robustness bugs, but is technically functional
 
 
 ## 🚀 DB deliverable
