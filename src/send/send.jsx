@@ -4,8 +4,9 @@ import './send.css';
 
 import { updateWeather } from "../weather";
 
-import plane from '../assets/paper-plane.png';
-import house from '../assets/house.jpeg';
+import plane from '../assets/plane.png';
+import house_sender from '../assets/sender-house.png';
+import house_recipient from '../assets/recipient-house.png';
 const SKY_SUNNY = "#87CEEB";
 const SKY_CLOUDY = "#B0C4DE";
 const SKY_OVERCAST = "#9E9E9E";
@@ -64,14 +65,12 @@ export default function Send() {
             <div id="sky" className="container flex-fill border p-0 overflow-hidden d-flex flex-column" style={{ backgroundColor: skyColor }}>
                 <div className="container-fluid d-flex flex-fill"></div>
                 <div className="container-fluid d-flex justify-content-between">
-                    <img className="ratio ratio-1x1 w-25" src={house}/>
-                    <img className="ratio ratio-1x1 w-25" src={house}/>
+                    <img id="house-recipient" className="ratio ratio-1x1 w-25" src={house_recipient}/>
+                    <img id="house-sender" className="ratio ratio-1x1 w-25" src={house_sender}/>
                 </div>
                 <div className="bg-dark">x</div>
                 
-                <div id="plane" className="airplane not-thrown">
-                    <img src={plane} width="36" rotate="90deg" />
-                </div>
+                <img id="plane" className="airplane not-thrown" src={plane} width="36" rotate="90deg"/>
             </div>
             
             { !isThrown && <button type="button" className="throw-button btn bg-secondary btn-lg text-white fw-bold" onClick={ throwPlane }>Throw</button> }

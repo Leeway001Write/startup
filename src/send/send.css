@@ -1,5 +1,7 @@
 .airplane {
     position: absolute;
+    width: 60px;
+    height: auto;
     transition: all 2s linear;
 }
 .not-thrown {
@@ -16,4 +18,8 @@
     height: 50vh;
 
     transition: linear all 0.5s;
+}
+
+#house-sender {
+    transform: scaleX(-1);
 }
