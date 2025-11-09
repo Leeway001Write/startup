@@ -55,6 +55,7 @@ Now those colors--and the colors of any descenant elements without specified col
 
 ## JavaScript
 - While using Async/Wait, make sure function names are spelled correctly! I had a typo, and so the `try` block was jumping to the `catch` and I had no idea why until I noticed the typo.
+- Placing a function inside `(...)()` will make it run immediately. This seems pointless, but to run `async` code it may prove useful.
 
 ## Service
 - Commands to test authentication:
