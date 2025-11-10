@@ -7,6 +7,7 @@ import { updateWeather } from "../weather";
 import plane from '../assets/plane.png';
 import house_sender from '../assets/sender-house.png';
 import house_recipient from '../assets/recipient-house.png';
+import raindrop from '../assets/raindrop.png';
 const SKY_SUNNY = "#87CEEB";
 const SKY_CLOUDY = "#B0C4DE";
 const SKY_OVERCAST = "#9E9E9E";
@@ -16,6 +17,8 @@ const SKY_NIGHT = "#313F56";
 export default function Send() {
     const [isThrown, setIsThrown] = useState(false);
     const [skyColor, setSkyColor] = useState("#000");
+
+    const [particles, setParticles] = useState([]);
 
     const location = useLocation();
     const recipient = location.state.recipient;
@@ -36,6 +39,27 @@ export default function Send() {
             setSkyColor(skyForWeather(weather));
         }
         fetchWeather();
+
+        if (weather === "overcast") {
+            // Animate rain
+            const particleIds = []
+            particleIds.push(setInterval(() => {
+                const pos = Math.random() * 100 + '%'; // Random left position
+                const p = (<img className="raindrop" src={ raindrop } style={{left: pos}} key={ pos }/>);
+    
+                setParticles((existingParticles) => {
+                    return [...existingParticles, p];
+                });
+    
+                particleIds.push(setTimeout(() => {
+                    setParticles((existingParticles) => existingParticles.filter((_, index) => index !== 0));
+                }, 1000));
+            }, 10));
+    
+            return () => {
+                particleIntervalIds.map((id) => clearInterval(id));
+            };
+        }
     }, []);
 
     const throwPlane = async function() {
@@ -63,6 +87,7 @@ export default function Send() {
     return (
         <main className="flex-fill m-3 d-flex flex-column justify-content-start align-items-center gap-3">
             <div id="sky" className="container flex-fill border p-0 overflow-hidden d-flex flex-column" style={{ backgroundColor: skyColor }}>
+                <div id="weather">{ particles }</div>
                 <div className="container-fluid d-flex flex-fill"></div>
                 <div className="container-fluid d-flex justify-content-between">
                     <img id="house-recipient" className="ratio ratio-1x1 w-25" src={house_recipient}/>

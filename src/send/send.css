@@ -1,3 +1,9 @@
+@property --raindrop-height {
+    syntax: "<length>";
+    inherits: false;
+    initial-value: 100px;
+}
+
 .airplane {
     position: absolute;
     width: 60px;
@@ -16,10 +22,37 @@
 #sky {
     width: 80vw;
     height: 50vh;
+    position: relative;
 
     transition: linear all 0.5s;
 }
 
 #house-sender {
     transform: scaleX(-1);
+}
+
+#weather {
+    z-index: 1;
+    pointer-events: none;
+}
+
+.raindrop {
+    height: var(--raindrop-height);
+    width: auto;
+    position: absolute;
+
+    top: -100px;
+
+    animation: fall 1s linear forwards;
+}
+
+@keyframes fall {
+    from {
+        transform: translateY(calc(0 - var(--raindrop-height)));
+        opacity: 1;
+    }
+    to {
+        transform: translateY(calc(50vh + 1.5 * var(--raindrop-height)));
+        opacity: 0;
+    }
 }
