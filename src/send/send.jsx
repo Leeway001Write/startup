@@ -42,18 +42,21 @@ export default function Send() {
 
         if (weather === "overcast") {
             // Animate rain
-            const particleIds = []
-            particleIds.push(setInterval(() => {
+            const particleIntervalIds = []; // To be able to clear intervals
+            particleIntervalIds.push(setInterval(() => {
+                // Create raindrop particle
                 const pos = Math.random() * 100 + '%'; // Random left position
                 const p = (<img className="raindrop" src={ raindrop } style={{left: pos}} key={ pos }/>);
     
+                // Add to state (which then adds it to DOM)
                 setParticles((existingParticles) => {
                     return [...existingParticles, p];
                 });
     
-                particleIds.push(setTimeout(() => {
+                // Delete particle after animation finishes
+                particleIntervalIds.push(setTimeout(() => {
                     setParticles((existingParticles) => existingParticles.filter((_, index) => index !== 0));
-                }, 1000));
+                }, 700)); // Time matches that of animation
             }, 10));
     
             return () => {
