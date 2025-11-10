@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="11.723897mm"
+   height="200mm"
+   viewBox="0 0 11.723897 200"
+   version="1.1"
+   id="svg1"
+   sodipodi:docname="raindrop.svg"
+   inkscape:version="1.4.2 (f4327f4, 2025-05-13)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#4f4f4f"
+     bordercolor="#eeeeee"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="false"
+     inkscape:deskcolor="#505050"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="0.68862935"
+     inkscape:cx="-55.90816"
+     inkscape:cy="375.38336"
+     inkscape:window-width="1920"
+     inkscape:window-height="991"
+     inkscape:window-x="-9"
+     inkscape:window-y="-9"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1">
+    <inkscape:grid
+       id="grid2"
+       units="mm"
+       originx="-96.447354"
+       originy="0"
+       spacingx="0.99999999"
+       spacingy="0.99999999"
+       empcolor="#0099e5"
+       empopacity="0.30196078"
+       color="#0099e5"
+       opacity="0.14901961"
+       empspacing="5"
+       enabled="true"
+       visible="false" />
+  </sodipodi:namedview>
+  <defs
+     id="defs1">
+    <linearGradient
+       id="linearGradient3"
+       inkscape:collect="always">
+      <stop
+         style="stop-color:#abb9bf;stop-opacity:0.32754344;"
+         offset="0"
+         id="stop3" />
+      <stop
+         style="stop-color:#f9ecd2;stop-opacity:0;"
+         offset="1"
+         id="stop4" />
+    </linearGradient>
+    <color-profile
+       name="Agfa-:-Swop-Standard"
+       xlink:href="../../../../../../../../WINDOWS/system32/spool/drivers/color/RSWOP.icm"
+       id="color-profile2" />
+    <color-profile
+       name="sRGB-IEC61966-2.1"
+       xlink:href="../../../../../../../../WINDOWS/system32/spool/drivers/color/sRGB%20Color%20Space%20Profile.icm"
+       id="color-profile3" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3"
+       id="linearGradient4"
+       x1="97.473343"
+       y1="298.35812"
+       x2="97.473343"
+       y2="110.92095"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="translate(4.9948254)" />
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-96.447353,-104.50712)">
+    <path
+       style="fill:#f9ecd2;stroke:#000000;stroke-width:0"
+       d="M 104.89133,114.88099 V 270.48901 Z"
+       id="path2" />
+    <path
+       style="fill:url(#linearGradient4);fill-opacity:1;stroke:#000000;stroke-width:0"
+       d="m 99.977641,106.17118 c 0,0 -2.55489,187.97471 -2.498145,192.01508 0.05674,4.04037 4.072184,5.03323 5.003074,5.03323 0.93089,0 4.89317,-0.96955 4.89317,-5.01823 0,-4.04868 -2.38993,-192.06134 -2.38993,-192.06134"
+       id="path3"
+       sodipodi:nodetypes="czzzc" />
+  </g>
+</svg>
