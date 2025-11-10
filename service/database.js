@@ -17,3 +17,19 @@ const msgColl = db.collection('messages');
     process.exit(1);
   }
 })();
+
+function getUser(username) {
+    return userColl.findOne({username: username});
+}
+
+function getUserByToken(token) {
+    return userColl.findOne({token: token});
+}
+
+async function createUser(user) {
+    await userColl.insertOne(user);
+}
+
+async function saveMessage(message) {
+    return msgColl.insertOne(message);
+}
