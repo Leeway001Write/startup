@@ -51,10 +51,10 @@ apiRouter.post('/auth/login', async (req, res) => {
       res.send({ email: user.email });
       return;
     }
-    res.status(401).send({ msg: 'Unauthorized (incorrect password)' });
+    res.status(401).send({ msg: 'Incorrect username or password (or username is taken)' });
     return;
   }
-  res.status(404).send({ msg: 'Unauthorized (user does not exist)' });
+  res.status(404).send({ msg: 'User does not exist' });
 });
 
 // DeleteAuth logout a user
@@ -131,6 +131,22 @@ apiRouter.get('/inbox', verifyAuth, async (req, res) => {
     const messages = await DB.getMessages(user.email);
     
     res.status(201).send(messages);
+});
+
+// Delete a message
+apiRouter.delete('/inbox/:id', verifyAuth, async (req, res) => {
+    const user = await findUser('token', req.cookies[authCookieName]);
+    await DB.deleteMessage(req.params.id, user.email);
+    
+    res.status(204).end();
+});
+
+// Mark a message as read
+apiRouter.patch('/inbox/:id', verifyAuth, async (req, res) => {
+    const user = await findUser('token', req.cookies[authCookieName]);
+    await DB.markMessage(req.params.id, req.body.isUnread);
+
+    res.status(204).end();
 });
 
 // Test

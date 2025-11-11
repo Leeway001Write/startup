@@ -28,42 +28,40 @@ export default function Inbox() {
             setMessagesList(messages);
         }
         loadMessages();
-
-        // Start simulating messages, save function to terminate interval
-        /* 
-        const stopMessages = simulateMessages((newMessage) => {
-            setMessagesList((currentList) => [newMessage, ...currentList]);
-            saveMessage(newMessage);
-        });
-
-        return () => stopMessages();
-        */
     }, [])
 
-    const clickMessageHandler = function(messageKey) {
-        setCurrentMessage(messagesList[messageKey]);
+    const clickMessageHandler = async function(messageId) {
+        const index = messagesList.findIndex(msg => msg._id === messageId);
 
-        if (messagesList[messageKey].isUnread) {
+        setCurrentMessage(messagesList[index]);
+
+        if (messagesList[index].isUnread) {
             const updated = [...messagesList];
-            updated[messageKey].isUnread = false;
+            updated[index].isUnread = false;
             setMessagesList(updated);
 
-            console.log(messageKey);
-            markSavedMessageAsRead(messagesList[messageKey]); // Mark as read in local DB
+            await markMessage(messageId, false); // Mark as read in DB
         }
     };
 
-    const handleDelete = function() {
-        if (confirm("Permanently DELETE all messages?")) {
+    const handleDelete = async function(id) {
+        if (confirm("Permanently DELETE all read messages?")) {
             // Clear DB for user
-            let user = localStorage.getItem('user');
-            let messageDB = JSON.parse(localStorage.getItem('messages'));
-            messageDB[user] = [];
-            localStorage.setItem('messages', JSON.stringify(messageDB));
+            if (!id) {
+                id = '0';
+            }
+            await fetch(`/api/inbox/${id}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json; charset=UTF-8'
+                }
+            });
         
             // Update page
-            setMessagesList([]);
-            setCurrentMessage(null);
+            setMessagesList(messagesList.filter((msg) => msg._id !== id && msg.isUnread));
+            if (currentMessage && currentMessage._id === id) {
+                setCurrentMessage(null);
+            }
         }
     }
 
@@ -73,12 +71,12 @@ export default function Inbox() {
 
             <div id="window" className="container-fluid d-flex gap-5 flex-fill">
                 <div id="controls" className="d-flex flex-column align-items-end gap-1 m-0 p-0">
-                    <button id="delete-button" className="btn btn-small bg-warning text-white" onClick={ handleDelete }>Delete All</button>
+                    <button id="delete-button" className="btn btn-small bg-warning text-white" onClick={ () => handleDelete('0') }>Delete All Read Messages</button>
                     <div className="messages border rounded flex-fill overflow-y-scroll">
 
                         { messagesList.length > 0 &&
                             messagesList.map((msg, i) => (
-                                <MessageCard key={i} sender={msg.sender} content={msg.content} isUnread={msg.isUnread} onClick={ () => clickMessageHandler(i) } />
+                                <MessageCard key={msg._id} sender={msg.sender} content={msg.content} isUnread={msg.isUnread} onClick={ () => clickMessageHandler(msg._id) } />
                             ))
                         }
 
@@ -98,17 +96,12 @@ function getMessages() {
     return JSON.parse(localStorage.getItem('messages'))[user];
 }
 
-function saveMessage(msg) {
-    let user = localStorage.getItem('user');
-    let messageDB = JSON.parse(localStorage.getItem('messages'));
-    messageDB[user] = [msg, ...messageDB[user]];
-    localStorage.setItem('messages', JSON.stringify(messageDB));
-}
-
-function markSavedMessageAsRead(msg) {
-    /*
-        This DOES NOT WORK properly. Currently, a *COPY* of messages are saved as unread. It works in a single session, but upon reopening the inbox the duplicates will show.
-        The solution likely involves giving each message a unique key
-    */
-   saveMessage(msg);
+async function markMessage(id, isUnread) {
+    await fetch(`/api/inbox/${id.toString()}`, {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json; charset=UTF-8'
+        },
+        body: { isUnread: isUnread }
+    });
 }

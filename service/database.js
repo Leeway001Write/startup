@@ -1,4 +1,4 @@
-const { MongoClient } = require('mongodb');
+const { MongoClient, ObjectId } = require('mongodb');
 const config = require('./db-config.json');
 
 const url = `mongodb+srv://${config.userName}:${config.password}@${config.hostname}`;
@@ -43,11 +43,28 @@ async function saveMessage(message) {
     return msgColl.insertOne(message);
 }
 
+async function deleteMessage(id, email) {
+    if (id !== '0') {
+        return msgColl.deleteOne({ _id: new ObjectId(id), recipient: email })
+    }
+    return msgColl.deleteMany({ recipient: email, isUnread: false });
+}
+
+async function markMessage(id, unread) {
+    if (id !== '0') {
+        return msgColl.updateOne({ _id: new ObjectId(id), recipient: email }), { $set: {isUnread: unread} };
+    }
+
+    return msgColl.updateMany({ recipient: email }), { $set: {isUnread: unread} };
+}
+
 module.exports = {
   getUser,
   getUserByToken,
   createUser,
   updateUser,
   getMessages,
-  saveMessage
+  saveMessage,
+  deleteMessage,
+  markMessage
 };
