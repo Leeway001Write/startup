@@ -97,11 +97,11 @@ function getMessages() {
 }
 
 async function markMessage(id, isUnread) {
-    await fetch(`/api/inbox/${id.toString()}`, {
+    await fetch(`/api/inbox/${id}`, {
         method: 'PATCH',
         headers: {
             'Content-Type': 'application/json; charset=UTF-8'
         },
-        body: { isUnread: isUnread }
+        body: JSON.stringify({ isUnread: isUnread })
     });
 }

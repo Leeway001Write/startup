@@ -144,7 +144,7 @@ apiRouter.delete('/inbox/:id', verifyAuth, async (req, res) => {
 // Mark a message as read
 apiRouter.patch('/inbox/:id', verifyAuth, async (req, res) => {
     const user = await findUser('token', req.cookies[authCookieName]);
-    await DB.markMessage(req.params.id, req.body.isUnread);
+    await DB.markMessage(req.params.id, req.body.isUnread, user.email);
 
     res.status(204).end();
 });

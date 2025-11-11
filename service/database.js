@@ -50,9 +50,9 @@ async function deleteMessage(id, email) {
     return msgColl.deleteMany({ recipient: email, isUnread: false });
 }
 
-async function markMessage(id, unread) {
+async function markMessage(id, unread, email) {
     if (id !== '0') {
-        return msgColl.updateOne({ _id: new ObjectId(id), recipient: email }), { $set: {isUnread: unread} };
+        return msgColl.updateOne({ _id: new ObjectId(id), recipient: email }, { $set: {isUnread: unread} });
     }
 
     return msgColl.updateMany({ recipient: email }), { $set: {isUnread: unread} };
