@@ -18,8 +18,8 @@ const msgColl = db.collection('messages');
   }
 })();
 
-function getUser(username) {
-    return userColl.findOne({username: username});
+function getUser(email) {
+    return userColl.findOne({email: email});
 }
 
 function getUserByToken(token) {
@@ -33,3 +33,10 @@ async function createUser(user) {
 async function saveMessage(message) {
     return msgColl.insertOne(message);
 }
+
+module.exports = {
+  getUser,
+  getUserByToken,
+  createUser,
+  saveMessage
+};

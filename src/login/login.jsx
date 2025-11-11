@@ -36,7 +36,7 @@ export default function Login() {
             // Success
             setUser(username);
             localStorage.setItem('user', username);
-        } else if (response?.status === 401) {
+        } else if (response?.status === 404) {
             // User does not exist
             if (confirm("User does not exist. Create new account?")) {
                 authenticateUser('api/auth/create', username, password);
@@ -46,6 +46,7 @@ export default function Login() {
             try {
                 const body = await response.json();
                 console.log(`⚠ Auth error: ${body.msg}`);
+                setErrorText(body.msg);
             } catch (error) {
                 console.log("Error with response JSON during auth: ", error);
             }

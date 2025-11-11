@@ -50,8 +50,10 @@ apiRouter.post('/auth/login', async (req, res) => {
       res.send({ email: user.email });
       return;
     }
+    res.status(401).send({ msg: 'Unauthorized (incorrect password)' });
+    return;
   }
-  res.status(401).send({ msg: 'Unauthorized (user does not exist)' });
+  res.status(404).send({ msg: 'Unauthorized (user does not exist)' });
 });
 
 // DeleteAuth logout a user
@@ -74,7 +76,8 @@ async function createUser(email, password) {
     password: passwordHash,
     token: uuid.v4(),
   };
-  users.push(user);
+  
+  await DB.createUser(user);
 
   return user;
 }
@@ -82,7 +85,10 @@ async function createUser(email, password) {
 async function findUser(field, value) {
   if (!value) return null;
 
-  return users.find((u) => u[field] === value);
+  if (field === 'token') {
+    return DB.getUserByToken(value);
+  }
+  return DB.getUser(value)
 }
 
 // setAuthCookie in the HTTP response
