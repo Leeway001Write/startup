@@ -68,6 +68,14 @@ Now those colors--and the colors of any descenant elements without specified col
     ```
 - Turns out lots of errors don't print when you're running the server via `node`. I got really confused when user creation started ending execution after bcrypt hashes the password, I thought it was stalling (because my print statements made it look like it was), but the client was getting an undefined result back. Turns out, the password was undefined in the request body.
 
+- I used to get this error when I accessed a page via route any way other than navigating with a routing button (e.g. reloading the page) `"Cannot GET /\<route>"` The solution was to add the following endpoint:
+```js
+// Return the application's default page if the path is unknown
+app.use((_req, res) => {
+  res.sendFile('index.html', { root: 'public' });
+});
+```
+
 ## Database
 - **Middleware** - The procedures that run between endpoint requests to backend API before responding. Example:
 ```js

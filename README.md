@@ -117,7 +117,7 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Stores data in MongoDB** - I did not complete this part of the deliverable.
+- [x] **Stores data in MongoDB** - I did not complete this part of the deliverable.
 - [x] **Stores credentials in MongoDB** - Works!
 
 ## 🚀 WebSocket deliverable
@@ -137,10 +137,10 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 - Can't open Send page manually anymore because it's looking for data from Write
 
 ## Future improvements
-- [ ] Fix server bug where reloading the page results in "Cannot GET /\<route>" Error
-- [ ] Figure out why weather doesn't seem to be working on mobile
+- [ ] Figure out why weather doesn't seem to be working on mobile `EDIT: It works! Just not if your browser never asks for location`
 - [ ] Include recipient line on letter in inbox ("Dear__"), and sender line in writing page ("Sincerely, ___")
 - [ ] Truncate message previews in Inbox
+- [ ] Sort messages by last sent, and make read/unread server-side
 - [ ] Message management: delete messages, reply, etc.
 - [ ] MUCH better visuals:
     - [ ] More playable (drag-and-throw)
