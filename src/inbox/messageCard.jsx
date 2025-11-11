@@ -4,7 +4,12 @@ import './inbox.css';
 
 import plane from '../assets/paper-plane.png';
 
+const PREVIEW_LENGTH = 25
+
 export default function MessageCard({ sender, content, isUnread, onClick}) {
+    if (content.length > PREVIEW_LENGTH) {
+        content = content.slice(0, PREVIEW_LENGTH) + "…";
+    }
 
     return (
         <button className="btn w-100" onClick={ onClick }>
@@ -15,7 +20,7 @@ export default function MessageCard({ sender, content, isUnread, onClick}) {
                 </div>
                 <div className="card-body">
                     <h5 className="card-title text-start"><strong>From: { sender }</strong></h5>
-                    <p className="card-text text-start">{ content }</p>
+                    <p className="card-text message-preview text-start">{ content }</p>
                 </div>
             </div>
         </button>

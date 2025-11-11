@@ -36,7 +36,7 @@ async function updateUser(user) {
 
 function getMessages(email) {
     const cursor = msgColl.find({recipient: email});
-    return cursor.toArray();
+    return cursor.sort({ _id: -1 }).toArray();
 }
 
 async function saveMessage(message) {

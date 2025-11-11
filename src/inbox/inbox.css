@@ -18,6 +18,10 @@
     font-style: normal;
 }
 
+.message-preview {
+    color: gray;
+}
+
 #delete-button {
     width: fit-content;
 }
