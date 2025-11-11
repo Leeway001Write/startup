@@ -46,6 +46,7 @@ apiRouter.post('/auth/login', async (req, res) => {
   if (user) {
     if (await bcrypt.compare(req.body.password, user.password)) {
       user.token = uuid.v4();
+      await DB.updateUser(user); // Update token in DB
       setAuthCookie(res, user.token);
       res.send({ email: user.email });
       return;
@@ -119,12 +120,7 @@ apiRouter.post('/send', verifyAuth, async (req, res) => {
 
     req.body.message.sender = user.email; // Make sure the user isn't pretending to be someone else
 
-    try {
-        messages[req.body.recipient] = [req.body.message, ...messages[req.body.recipient]];
-    } catch {
-        // Create new inbox
-        messages[req.body.recipient] = [req.body.message];
-    }
+    await DB.saveMessage(req.body.message);
 
     res.status(201).send({status: "sent"});
 })
@@ -132,8 +128,9 @@ apiRouter.post('/send', verifyAuth, async (req, res) => {
 // Get messages
 apiRouter.get('/inbox', verifyAuth, async (req, res) => {
     const user = await findUser('token', req.cookies[authCookieName]);
+    const messages = await DB.getMessages(user.email);
     
-    res.status(201).send(messages[user.email] || []);
+    res.status(201).send(messages);
 });
 
 // Test

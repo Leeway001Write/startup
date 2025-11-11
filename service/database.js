@@ -30,6 +30,15 @@ async function createUser(user) {
     await userColl.insertOne(user);
 }
 
+async function updateUser(user) {
+    return userColl.updateOne({email: user.email}, {$set: user});
+}
+
+function getMessages(email) {
+    const cursor = msgColl.find({recipient: email});
+    return cursor.toArray();
+}
+
 async function saveMessage(message) {
     return msgColl.insertOne(message);
 }
@@ -38,5 +47,7 @@ module.exports = {
   getUser,
   getUserByToken,
   createUser,
+  updateUser,
+  getMessages,
   saveMessage
 };

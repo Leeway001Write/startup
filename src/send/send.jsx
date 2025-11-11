@@ -71,6 +71,7 @@ export default function Send() {
             let user = localStorage.getItem('user');
             let msg = {
                 sender: user,
+                recipient: recipient,
                 content: message,
                 isUnread: true
             };
@@ -111,7 +112,6 @@ async function sendMessage(msg, recipient) {
     const response = await fetch('api/send', {
         method: 'POST',
         body: JSON.stringify({
-            recipient: recipient,
             message: msg
         }),
         headers: {
