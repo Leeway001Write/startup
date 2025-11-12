@@ -18,10 +18,6 @@ const authCookieName = 'token';
 
 app.use(cookieParser());
 
-let users = [];
-let messages = [];
-
-
 var apiRouter = express.Router();
 app.use('/api', apiRouter);
 
