@@ -169,6 +169,17 @@ app.use((_req, res) => {
   res.sendFile('index.html', { root: 'public' });
 });
 
-app.listen(port, () => {
+const httpService = app.listen(port, () => {
     console.log(`Listening on port ${port}`);
+});
+
+////////////////
+// WebSocket //
+
+const socketServer = new WebSocketServer({ server: httpServer });
+
+socketServer.on('connection', (socket) => {
+    socket.on('message', (data) => {
+        console.log(data);
+    });
 });
