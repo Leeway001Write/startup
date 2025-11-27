@@ -87,3 +87,84 @@ app.get('/path', (req, res) => { // 1
   res.send(''); // 3
 });
 ```
+
+## WebSocket
+To debug websocket connections on local machine with Vite (e.g. `npm run dev`), specify a `/ws` proxy in vite config similar to how you would for hosting a server.
+```js
+import { defineConfig } from 'vite';
+
+export default defineConfig({
+  server: {
+    proxy: {
+      '/api': 'http://localhost:3000',
+      '/ws': {
+        target: 'ws://localhost:3000',
+        ws: true,
+      },
+    },
+  },
+});
+```
+### Upgrade to WebSocket connection (must be done by the client):
+```js
+    let port = window.location.port;
+    const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss'; // ws for http, wss for https
+    this.socket = new WebSocket(`${protocol}://${window.location.hostname}:${port}/ws`); 
+
+    this.socket.onopen = (event) => {
+        console.log("WebSocket Connected");
+    };
+    this.socket.onclose = (event) => {
+        console.log("WebSocket Disconnected");
+    };
+    this.socket.onmessage = async (msg) => {
+      try {
+        const text = JSON.parse(await msg.data.text());
+        console.log(`From server: ${text}`);
+      } catch {}
+    };
+```
+
+### Handle WebSocket from server
+This code is almost directly from simon-websocket, just refactored to fit in one script. I only mostly understand it.
+```js
+    // Create a WebSocket instance for the server
+    const httpService = app.listen(port, () => {
+    console.log(`Listening on port ${port}`);
+    });
+
+    const socketServer = new WebSocketServer({ server: httpServer }); // Create instance
+
+    socketServer.on('connection', (socket) => { // Receive upgrade request, which automatically comes here with instance created?
+        socket.isAlive = true;
+
+        // Forward messages to everyone except the sender
+        socket.on('message', function message(data) {
+        socketServer.clients.forEach((client) => {
+            if (client !== socket && client.readyState === WebSocket.OPEN) {
+            client.send(data); // Simple example of how to send messages from server to client
+            }
+        });
+        });
+
+        // Respond to pong messages by marking the connection alive
+        socket.on('pong', () => {
+        socket.isAlive = true;
+        });
+    });
+
+    // Periodically send out a ping message to make sure clients are alive
+    setInterval(() => {
+        socketServer.clients.forEach(function each(client) {
+        if (client.isAlive === false) return client.terminate();
+
+        client.isAlive = false;
+        client.ping();
+        });
+    }, 10000);
+```
+
+### Message from client to server
+```js
+    this.socket.send(JSON.stringify(msg));
+```
