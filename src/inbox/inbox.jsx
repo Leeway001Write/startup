@@ -91,11 +91,6 @@ export default function Inbox() {
     )
 }
 
-function getMessages() {
-    let user = localStorage.getItem('user');
-    return JSON.parse(localStorage.getItem('messages'))[user];
-}
-
 async function markMessage(id, isUnread) {
     await fetch(`/api/inbox/${id}`, {
         method: 'PATCH',
