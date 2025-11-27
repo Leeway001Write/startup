@@ -128,6 +128,8 @@ export default defineConfig({
 ### Handle WebSocket from server
 This code is almost directly from simon-websocket, just refactored to fit in one script. I only mostly understand it.
 ```js
+    const { WebSocketServer } = require('ws');
+
     // Create a WebSocket instance for the server
     const httpService = app.listen(port, () => {
     console.log(`Listening on port ${port}`);

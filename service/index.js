@@ -7,6 +7,9 @@ const port = process.argv.length > 2 ? process.argv[2] : 4000;
 app.use(express.static('public'));
 app.use(express.json());
 
+// WebSocket
+const { WebSocketServer } = require('ws');
+
 /// Database
 const DB = require('./database.js');
 
@@ -176,10 +179,12 @@ const httpService = app.listen(port, () => {
 ////////////////
 // WebSocket //
 
-const socketServer = new WebSocketServer({ server: httpServer });
+const socketServer = new WebSocketServer({ server: httpService });
 
 socketServer.on('connection', (socket) => {
     socket.on('message', (data) => {
-        console.log(data);
+        console.log("From client: ", data);
     });
+
+    console.log("WebSocket Connected")
 });

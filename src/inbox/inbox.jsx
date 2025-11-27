@@ -4,8 +4,6 @@ import MessageCard from './messageCard.jsx';
 import Letter from './letter.jsx';
 import './inbox.css';
 
-import { simulateMessages } from './simulatedMessaging.js';
-
 export default function Inbox() {
     const [messagesList, setMessagesList] = useState([]);
     const [currentMessage, setCurrentMessage] = useState(null);
@@ -28,6 +26,27 @@ export default function Inbox() {
             setMessagesList(messages);
         }
         loadMessages();
+
+        // Start WebSocket to receive incoming messages
+        let port = window.location.port;
+        const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss';
+        
+        function upgradeToWS() {
+            const socket = new WebSocket(`${protocol}://${window.location.hostname}:${port}/ws`);
+            socket.onopen = (event) => {
+                console.log("WebSocket Connected");
+            };
+            socket.onclose = (event) => {
+                console.log("WebSocket Disconnected");
+            }
+            socket.onmessage = async (msg) => {
+                try {
+                    const text = await (JSON.parse(await msg.data.text()));
+                    console.log(`From server: ${text}`);
+                } catch {}
+            }
+        }
+        upgradeToWS();
     }, [])
 
     const clickMessageHandler = async function(messageId) {
