@@ -183,7 +183,7 @@ const socketServer = new WebSocketServer({ server: httpService });
 
 socketServer.on('connection', (socket) => {
     socket.on('message', (data) => {
-        console.log("From client: ", data);
+        console.log("From client: ", JSON.parse(data));
     });
 
     console.log("WebSocket Connected")

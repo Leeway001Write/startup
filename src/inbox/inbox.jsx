@@ -4,6 +4,10 @@ import MessageCard from './messageCard.jsx';
 import Letter from './letter.jsx';
 import './inbox.css';
 
+let port = window.location.port;
+const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss';
+const socket = new WebSocket(`${protocol}://${window.location.hostname}:${port}/ws`);
+
 export default function Inbox() {
     const [messagesList, setMessagesList] = useState([]);
     const [currentMessage, setCurrentMessage] = useState(null);
@@ -28,11 +32,7 @@ export default function Inbox() {
         loadMessages();
 
         // Start WebSocket to receive incoming messages
-        let port = window.location.port;
-        const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss';
-        
         function upgradeToWS() {
-            const socket = new WebSocket(`${protocol}://${window.location.hostname}:${port}/ws`);
             socket.onopen = (event) => {
                 console.log("WebSocket Connected");
             };
@@ -91,6 +91,7 @@ export default function Inbox() {
             <div id="window" className="container-fluid d-flex gap-5 flex-fill">
                 <div id="controls" className="d-flex flex-column align-items-end gap-1 m-0 p-0">
                     <button id="delete-button" className="btn btn-small bg-warning text-white" onClick={ () => handleDelete('0') }>Delete All Read Messages</button>
+                    <button id="ws-test" className="btn btn-small bg-info text-white" onClick={ () => { socket.send(JSON.stringify("Heyo Wurld")) } }>Test WS</button>
                     <div className="messages border rounded flex-fill overflow-y-scroll">
 
                         { messagesList.length > 0 &&
