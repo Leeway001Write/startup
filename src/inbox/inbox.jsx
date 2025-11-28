@@ -41,16 +41,13 @@ export default function Inbox() {
             }
             socket.onmessage = async (wsMsg) => {
                 try {
-                    const data = await (JSON.parse(await wsMsg.data));
-                    console.log(`From server: `, data);
+                    const data = await (JSON.parse(wsMsg.data));
 
                     if (data.recipient) { // Odd way to verify whether this is a user-to-user message/letter but it works for now
                         const updated = [data, ...messagesList];
                         setMessagesList(updated);
                     }
-                } catch {
-                    console.log("Failed to parse message");
-                }
+                } catch {}
             }
         }
         upgradeToWS();
@@ -91,6 +88,25 @@ export default function Inbox() {
         }
     }
 
+    async function wsTestForTAs() {
+        // Send a message (over http) to self, which will then be forwarded via websocket
+        let user = localStorage.getItem('user');
+        const response = await fetch('api/send', {
+        method: 'POST',
+            body: JSON.stringify({
+                message: {
+                    sender: user,
+                    recipient: user,
+                    content: "Test: This message should show up immediately since it was forwarded to the frontend via WebSocket!",
+                    isUnread: true
+                }
+            }),
+            headers: {
+                'Content-Type': 'application/json; charset=UTF-8'
+            }
+        });
+    }
+
     return (
         <main className="flex-fill d-flex flex-column justify-content-between align-items-center p-3">
             <h2>Inbox</h2>
@@ -98,7 +114,7 @@ export default function Inbox() {
             <div id="window" className="container-fluid d-flex gap-5 flex-fill">
                 <div id="controls" className="d-flex flex-column align-items-end gap-1 m-0 p-0">
                     <button id="delete-button" className="btn btn-small bg-warning text-white" onClick={ () => handleDelete('0') }>Delete All Read Messages</button>
-                    <button id="ws-test" className="btn btn-small bg-info text-white" onClick={ () => { console.log(messagesList) } }>Test WS</button>
+                    <button id="ws-test" className="btn btn-small bg-info text-white" onClick={ wsTestForTAs }>TA Test: Send message to self</button>
                     <div className="messages border rounded flex-fill overflow-y-scroll">
 
                         { messagesList.length > 0 &&

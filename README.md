@@ -126,9 +126,9 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 - [X] **Backend listens for WebSocket connection**
 - [X] **Frontend makes WebSocket connection**
-- [ ] **Data sent over WebSocket connection** - I did not complete this part of the deliverable.
-- [ ] **WebSocket data displayed** - I did not complete this part of the deliverable.
-- [ ] **Application is fully functional** - I did not complete this part of the deliverable.
+- [X] **Data sent over WebSocket connection** - Server-to-client. Currently letters sent are sent over http request, but after server stores letter in database it also forwards it to any active clients associated with the listed recipient.
+- [X] **WebSocket data displayed** - TO TEST THIS, you may use the blue button on the Inbox page if you like. This just sends a message to yourself. You could open multiple tabs and try it that way if you like.
+- [X] **Application is fully functional**
 
 ## Known bugs
 - Messages don't get marked as read in DB
