@@ -39,15 +39,22 @@ export default function Inbox() {
             socket.onclose = (event) => {
                 console.log("WebSocket Disconnected");
             }
-            socket.onmessage = async (msg) => {
+            socket.onmessage = async (wsMsg) => {
                 try {
-                    const text = await (JSON.parse(await msg.data.text()));
-                    console.log(`From server: ${text}`);
-                } catch {}
+                    const data = await (JSON.parse(await wsMsg.data));
+                    console.log(`From server: `, data);
+
+                    if (data.recipient) { // Odd way to verify whether this is a user-to-user message/letter but it works for now
+                        const updated = [data, ...messagesList];
+                        setMessagesList(updated);
+                    }
+                } catch {
+                    console.log("Failed to parse message");
+                }
             }
         }
         upgradeToWS();
-    }, [])
+    }, [messagesList])
 
     const clickMessageHandler = async function(messageId) {
         const index = messagesList.findIndex(msg => msg._id === messageId);
@@ -91,7 +98,7 @@ export default function Inbox() {
             <div id="window" className="container-fluid d-flex gap-5 flex-fill">
                 <div id="controls" className="d-flex flex-column align-items-end gap-1 m-0 p-0">
                     <button id="delete-button" className="btn btn-small bg-warning text-white" onClick={ () => handleDelete('0') }>Delete All Read Messages</button>
-                    <button id="ws-test" className="btn btn-small bg-info text-white" onClick={ () => { socket.send(JSON.stringify("Heyo Wurld")) } }>Test WS</button>
+                    <button id="ws-test" className="btn btn-small bg-info text-white" onClick={ () => { console.log(messagesList) } }>Test WS</button>
                     <div className="messages border rounded flex-fill overflow-y-scroll">
 
                         { messagesList.length > 0 &&

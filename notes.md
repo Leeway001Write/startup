@@ -56,6 +56,7 @@ Now those colors--and the colors of any descenant elements without specified col
 ## JavaScript
 - While using Async/Wait, make sure function names are spelled correctly! I had a typo, and so the `try` block was jumping to the `catch` and I had no idea why until I noticed the typo.
 - Placing a function inside `(...)()` will make it run immediately. This seems pointless, but to run `async` code it may prove useful.
+- Inside any useEffect() function for a component, any state variable you want to use inside must be included in the dependency array. Otherwise they will evaluate to null when you try to use them.
 
 ## Service
 - Commands to test authentication:
@@ -119,7 +120,7 @@ export default defineConfig({
     };
     this.socket.onmessage = async (msg) => {
       try {
-        const text = JSON.parse(await msg.data.text());
+        const text = JSON.parse(await msg.data);
         console.log(`From server: ${text}`);
       } catch {}
     };

@@ -9,6 +9,7 @@ app.use(express.json());
 
 // WebSocket
 const { WebSocketServer } = require('ws');
+const cookie = require('cookie');
 
 /// Database
 const DB = require('./database.js');
@@ -121,6 +122,18 @@ apiRouter.post('/send', verifyAuth, async (req, res) => {
 
     await DB.saveMessage(req.body.message);
 
+    try {
+        // Notify recipient immediately (WebSocket)
+        socketServer.clients.forEach((client) => {
+            if (client.email === user.email) {
+                client.send(JSON.stringify(req.body.message));
+                console.log(`Notified user: ${user.email}`);
+            }
+        })
+    } catch (error) {
+        console.log(error);
+    }
+
     res.status(201).send({status: "sent"});
 })
 
@@ -181,14 +194,20 @@ const httpService = app.listen(port, () => {
 
 const socketServer = new WebSocketServer({ server: httpService });
 
-socketServer.on('connection', (socket) => {
+socketServer.on('connection', async (socket, req) => {
+    console.log("WebSocket Connected")
+
+    // Attach email to socket
+    const user = await findUser('token', await cookie.parse(req.headers.cookie)[authCookieName]);
+    socket.email = user.email;
+    console.log("WS auth: ", socket.email);
+
     socket.on('message', (data) => {
         console.log("From client: ", JSON.parse(data));
+        console.log(socketServer.clients);
 
         socketServer.clients.forEach((client) => {
             client.send(data);
         })
     });
-
-    console.log("WebSocket Connected")
 });
