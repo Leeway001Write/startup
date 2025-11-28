@@ -126,7 +126,6 @@ apiRouter.post('/send', verifyAuth, async (req, res) => {
     let countClientsNotified = 0;
     socketServer.clients.forEach((client) => {
         if (client.email === req.body.message.recipient) {
-            console.log("\t" + client.email);
             client.send(JSON.stringify(req.body.message));
             countClientsNotified++;
         }
