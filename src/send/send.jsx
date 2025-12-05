@@ -28,7 +28,7 @@ export default function Send() {
         // Render sky based off of currently stored weather
         let weather = localStorage.getItem('weather');
         if (weather) {
-            setSkyColor(skyForWeather(weather));
+            setSkyColor(skyForWeather(weather.description));
         }
 
         // Attempt to update weather anew
@@ -36,11 +36,11 @@ export default function Send() {
             console.log("Send page getting weather...");
             let weather = await updateWeather();
             console.log("Send page updated weather: ", weather);
-            setSkyColor(skyForWeather(weather));
+            setSkyColor(skyForWeather(weather.description));
         }
         fetchWeather();
 
-        if (weather === "overcast") {
+        if (weather.precipitation === "rain" && weather.precipitation === "shower") {
             // Animate rain
             const particleIntervalIds = []; // To be able to clear intervals
             particleIntervalIds.push(setInterval(() => {

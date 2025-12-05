@@ -5,12 +5,12 @@ export async function updateWeather() {
     // Get local weather
     const result = await getRawWeatherData(pos.coords.latitude, pos.coords.longitude);
     const json = await result.json()
-    const weatherDesc = extractWeatherDesc(json);
+    const weather = extractWeatherDesc(json);
 
     // Save weather in local storage
-    localStorage.setItem('weather', weatherDesc);
+    localStorage.setItem('weather', weather);
 
-    return weatherDesc;
+    return weather;
 }
 
 async function getPosition() {
@@ -20,20 +20,38 @@ async function getPosition() {
 }
 
 function extractWeatherDesc(result) {
+    let weatherDesc = "unknown";
+    let precip = "unknown";
+
     const weather_code = result.current.weather_code;
+    const rain = result.current.weather_code;
+    const showers = result.current.showers;
+    const snowfall = result.current.snowfall;
+    
     if (!extractIsDay(result)) {
-        return "night";
+        weatherDesc = "night";
     } else if (weather_code >= 0 && weather_code <= 1) {
-        return "sunny";
+        weatherDesc = "sunny";
     } else if (weather_code == 2 || weather_code == 80) {
-        return "partly cloudy";
+        weatherDesc = "partly cloudy";
     } else if (weather_code >= 3 && weather_code <= 65) {
-        return "overcast";
+        weatherDesc = "overcast";
     } else if (weather_code >= 71 && weather_code <= 75) {
-        return "snow";
+        weatherDesc = "snow";
     }
 
-    return "unknown";
+    if (rain > snowfall && rain > showers) {
+        precip = "rain";
+    } else if (snowfall > rain && snowfall && showers) {
+        precip = "snow";
+    } else if (showers > rain && showers && snowfall) {
+        precip = "shower";
+    }
+
+    return {
+        description: weatherDesc,
+        precipitation: precip
+    };
 }
 
 function extractIsDay(result) {
