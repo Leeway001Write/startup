@@ -1,4 +1,4 @@
-const SIGNIFICANT_PRECIP = 0.2; // inches
+const SIGNIFICANT_PRECIP = 0.003; // inches
 
 export async function updateWeather() {
     // Get location
