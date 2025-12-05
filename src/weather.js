@@ -1,3 +1,5 @@
+const SIGNIFICANT_PRECIP = 0.2; // inches
+
 export async function updateWeather() {
     // Get location
     const pos = await getPosition();
@@ -8,7 +10,8 @@ export async function updateWeather() {
     const weather = extractWeatherDesc(json);
 
     // Save weather in local storage
-    localStorage.setItem('weather', weather);
+    localStorage.setItem('weatherDesc', weather.description);
+    localStorage.setItem('precipitation', weather.precipitation)
 
     return weather;
 }
@@ -21,10 +24,10 @@ async function getPosition() {
 
 function extractWeatherDesc(result) {
     let weatherDesc = "unknown";
-    let precip = "unknown";
+    let precip = "none";
 
     const weather_code = result.current.weather_code;
-    const rain = result.current.weather_code;
+    const rain = result.current.rain;
     const showers = result.current.showers;
     const snowfall = result.current.snowfall;
     
@@ -40,12 +43,20 @@ function extractWeatherDesc(result) {
         weatherDesc = "snow";
     }
 
-    if (rain > snowfall && rain > showers) {
-        precip = "rain";
-    } else if (snowfall > rain && snowfall && showers) {
-        precip = "snow";
-    } else if (showers > rain && showers && snowfall) {
-        precip = "shower";
+    console.log("Precipitation report:", {
+        rain: rain,
+        shower: showers,
+        snow: snowfall
+    });
+
+    if ((rain + showers + snowfall) >= SIGNIFICANT_PRECIP) {
+        if (rain > snowfall && rain > showers) {
+            precip = "rain";
+        } else if (snowfall > rain && snowfall && showers) {
+            precip = "snow";
+        } else if (showers > rain && showers && snowfall) {
+            precip = "shower";
+        }
     }
 
     return {
@@ -60,5 +71,5 @@ function extractIsDay(result) {
 }
 
 async function getRawWeatherData(lat, lon) {
-    return await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=is_day,weather_code&timezone=auto`);
+    return await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=snowfall,rain,showers,is_day,weather_code,precipitation&timezone=auto&precipitation_unit=inch`);
 }

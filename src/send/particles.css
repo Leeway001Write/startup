@@ -1,0 +1,46 @@
+@property --raindrop-height {
+    syntax: "<length>";
+    inherits: false;
+    initial-value: 100px;
+}
+
+@property --snowflake-size {
+    syntax: "<length>";
+    inherits: false;
+    initial-value: 10px;
+}
+
+.raindrop {
+    height: var(--raindrop-height);
+    width: auto;
+    position: absolute;
+
+    top: calc(-1 * var(--raindrop-height));
+
+    animation: fall 0.7s linear forwards;
+}
+
+.snowflake {
+    height: var(--snowflake-size);
+    width: var(--snowflake-size);
+    position: absolute;
+
+    background-color: white;
+    border-radius: 100%;
+    opacity: 0.8;
+
+    top: calc(-1 * var(--snowflake-size));
+
+    animation: fall 3s linear forwards;
+}
+
+@keyframes fall {
+    from {
+        transform: translateY(calc(0 - var(--raindrop-height)));
+        opacity: none;
+    }
+    to {
+        transform: translateY(calc(50vh + 1.5 * var(--raindrop-height)));
+        opacity: 0;
+    }
+}

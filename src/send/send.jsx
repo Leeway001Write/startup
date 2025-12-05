@@ -2,16 +2,16 @@ import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import './send.css';
 
+import { Raindrop, Snowflake} from './particles.jsx';
 import { updateWeather } from "../weather";
 
 import plane from '../assets/plane.png';
 import house_sender from '../assets/sender-house.png';
 import house_recipient from '../assets/recipient-house.png';
-import raindrop from '../assets/raindrop.png';
 const SKY_SUNNY = "#87CEEB";
 const SKY_CLOUDY = "#B0C4DE";
 const SKY_OVERCAST = "#9E9E9E";
-const SKY_SNOW = "#FFF";
+const SKY_SNOW = "#EEE";
 const SKY_NIGHT = "#313F56";
 
 export default function Send() {
@@ -26,8 +26,11 @@ export default function Send() {
 
     useEffect(() => {
         // Render sky based off of currently stored weather
-        let weather = localStorage.getItem('weather');
-        if (weather) {
+        let weather = {
+            description: localStorage.getItem("weatherDesc"),
+            precipitation: localStorage.getItem("precipitation")
+        }
+        if (weather && weather.description) {
             setSkyColor(skyForWeather(weather.description));
         }
 
@@ -40,13 +43,18 @@ export default function Send() {
         }
         fetchWeather();
 
-        if (weather.precipitation === "rain" && weather.precipitation === "shower") {
-            // Animate rain
+        if (weather.precipitation && weather.precipitation !== "none") {
+            // Animate precipitation
             const particleIntervalIds = []; // To be able to clear intervals
             particleIntervalIds.push(setInterval(() => {
-                // Create raindrop particle
+                // Create particle
                 const pos = Math.random() * 100 + '%'; // Random left position
-                const p = (<img className="raindrop" src={ raindrop } style={{left: pos}} key={ pos }/>);
+                let p = (<Raindrop pos={pos} key={pos} />);
+                let fallTime = 0.7; // seconds (see particles.css)
+                if (weather.precipitation === "snow") {
+                    p = (<Snowflake pos={pos} key={pos} />);
+                    fallTime = 3.0;
+                }
     
                 // Add to state (which then adds it to DOM)
                 setParticles((existingParticles) => {
@@ -56,7 +64,7 @@ export default function Send() {
                 // Delete particle after animation finishes
                 particleIntervalIds.push(setTimeout(() => {
                     setParticles((existingParticles) => existingParticles.filter((_, index) => index !== 0));
-                }, 700)); // Time matches that of animation
+                }, fallTime * 1000)); // Time matches that of animation
             }, 10));
     
             return () => {

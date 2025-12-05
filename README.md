@@ -131,19 +131,19 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 - [X] **Application is fully functional**
 
 ## Known bugs
-- Messages don't get marked as read in DB
 - Messages should only be sent if they have a recipient and content. Disable button otherwise
-- Odd abiliy to be signed in as "null" isn't good, all "null" users will see and send the same anonymous messages
 - Can't open Send page manually anymore because it's looking for data from Write
+- Stale sessions will store username locally and login page will assume you're still logged in, despite no longer having a token.
 
 ## Future improvements
-- [ ] Figure out why weather doesn't seem to be working on mobile `EDIT: It works! Just not if your browser never asks for location`
+- [x] Figure out why weather doesn't seem to be working on mobile `EDIT: It works! Just not if your browser is set to never ask for location`
 - [ ] Include recipient line on letter in inbox ("Dear__"), and sender line in writing page ("Sincerely, ___")
-- [ ] Truncate message previews in Inbox
-- [ ] Sort messages by last sent, and make read/unread server-side
-- [ ] Message management: delete messages, reply, etc.
+- [x] Truncate message previews in Inbox
+- [x] Sort messages by last sent, and make read/unread server-side
+- [ ] Message management: delete individual messages, reply, etc.
 - [ ] MUCH better visuals:
     - [ ] More playable (drag-and-throw)
     - [ ] Folding paper airplane
     - [ ] More graphical inbox?
 - [ ] Allow for dark mode
+- [ ] Different animations for rain vs showers (API call currently gets data for both!)
