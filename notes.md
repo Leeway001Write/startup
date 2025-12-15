@@ -162,7 +162,7 @@ This code is almost directly from simon-websocket, just refactored to fit in one
         if (client.isAlive === false) return client.terminate();
 
         client.isAlive = false;
-        client.ping();
+        client.ping(); // Connected WebSocket clients will automatically respond with a 'pong' protocol-level control frame
         });
     }, 10000);
 ```
