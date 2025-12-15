@@ -1,8 +1,8 @@
-# Your startup name here
+# *Sincerely* - messaging service with a twist
 
 [My Notes](notes.md)
 
-> *I still need to write a description.*
+> In a world where sending texts and emails becomes commonplace and mailing a letter is "too slow," *Sincerely* allows you to write a digital letter, fold it up into a paper airplane, and toss it into a friend's digital window for them to read. When you can't leave a nice note in-person, at least you can still show you care in more ways than sending a text just like everyone else.
 
 ## 🚀 Specification Deliverable
 
